@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(const MyApp());
 }
+// создал сразу проект в гите с 1 заданием, просто для pull request
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
