@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MySecondWidget(),
+      home: const MySecondWidget(),
     );
   }
 }
@@ -82,18 +82,20 @@ class MyFirstWidget extends StatelessWidget {
 }
 
 class MySecondWidget extends StatefulWidget {
-  MySecondWidget({super.key});
-  int count = 0;
+  const MySecondWidget({super.key});
 
   @override
   State<MySecondWidget> createState() => _MySecondWidgetState();
 }
 
 class _MySecondWidgetState extends State<MySecondWidget> {
+  int count = 0;
+
   @override
   Widget build(BuildContext context) {
-    print(widget.count);
-    widget.count++;
+    print(count);
+    count++;
+
     return const Center(
       child: Text('Hello! StateFull'),
     );
