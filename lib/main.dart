@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const App());
 }
 // создал сразу проект в гите с 1 заданием, просто для pull request
 
@@ -72,8 +72,6 @@ class MyFirstWidget extends StatelessWidget {
   MyFirstWidget({super.key});
   int count = 0;
 
-  @override
-  Widget build(BuildContext context) {
     print(count);
     count++;
     return const Center(
@@ -81,24 +79,5 @@ class MyFirstWidget extends StatelessWidget {
     );
   }
 }
-
-class MySecondWidget extends StatefulWidget {
-  const MySecondWidget({super.key});
-
-  @override
-  State<MySecondWidget> createState() => _MySecondWidgetState();
-}
-
-class _MySecondWidgetState extends State<MySecondWidget> {
-  int count = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    print(count);
-    count++;
-
-    return const Center(
-      child: Text('Hello! StateFull'),
-    );
   }
 }
