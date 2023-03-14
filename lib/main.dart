@@ -121,12 +121,12 @@ class MyFirstWidget extends StatelessWidget {
   MyFirstWidget({super.key});
   int count = 0;
 
+  returnRuntimeType() {
+    //return context.runtimeType;
+  }
+
   @override
   Widget build(BuildContext context) {
-    returnRuntimeType() {
-      return context.runtimeType;
-    }
-
     returnRuntimeType();
     print(count);
     count++;
@@ -144,12 +144,12 @@ class MyWidget extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<MyWidget> {
+  returnRuntimeType() {
+    return context.runtimeType;
+  }
+
   @override
   Widget build(BuildContext context) {
-    returnRuntimeType() {
-      return context.runtimeType;
-    }
-
     returnRuntimeType();
     return const Placeholder();
   }
