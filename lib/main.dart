@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const App());
+  runApp(const MyApp());
 }
 // создал сразу проект в гите с 1 заданием, просто для pull request
 
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MySecondWidget(),
+      home: const MyHomePage(title: '123'),
     );
   }
 }
@@ -65,19 +65,5 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
-  }
-}
-
-class MyFirstWidget extends StatelessWidget {
-  MyFirstWidget({super.key});
-  int count = 0;
-
-    print(count);
-    count++;
-    return const Center(
-      child: Text('Hello!'),
-    );
-  }
-}
   }
 }
