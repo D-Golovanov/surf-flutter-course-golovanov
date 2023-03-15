@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:places/ui/screen/sight_list_screen.dart';
 
 void main() {
   runApp(const MyApp());
 }
-// создал сразу проект в гите с 1 заданием, просто для pull request
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: '123'),
+      home: const SightListScreen(),
     );
   }
 }
