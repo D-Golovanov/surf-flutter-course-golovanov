@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:places/assets/colors.dart';
+import 'package:places/assets/res.dart';
+import 'package:places/assets/strings.dart';
 
 class SightListScreen extends StatefulWidget {
   const SightListScreen({super.key});
@@ -13,7 +16,7 @@ class _SightListScreenState extends State<SightListScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.white,
         elevation: 0.0,
         toolbarHeight: 0.0,
         bottom: const PreferredSize(
@@ -23,14 +26,9 @@ class _SightListScreenState extends State<SightListScreen> {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                'Список\nинтересных мест',
+                AppStrings.appTitle,
                 textAlign: TextAlign.left,
-                style: TextStyle(
-                  color: Color(0xFF252849),
-                  fontFamily: 'Roboto',
-                  fontWeight: FontWeight.w700,
-                  fontSize: 32,
-                ),
+                style: AppTypography.textAppTitle,
               ),
             ),
           ),
