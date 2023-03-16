@@ -7,8 +7,9 @@ class AppAssets {
 
 class AppTypography {
   static const textAppTitle = TextStyle(
-      fontFamily: 'Roboto',
-      fontSize: 32.0,
-      fontWeight: FontWeight.w700,
-      color: AppColors.darkBlue);
+    fontFamily: 'Roboto',
+    fontSize: 32.0,
+    fontWeight: FontWeight.w700,
+    color: AppColors.darkBlue,
+  );
 }
