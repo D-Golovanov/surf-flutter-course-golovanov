@@ -31,7 +31,7 @@ class _SightListScreenState extends State<SightListScreen> {
               child: Text(
                 AppStrings.appTitle,
                 textAlign: TextAlign.left,
-                style: AppTypography.textAppTitle,
+                style: AppTypography.text32AppTitle,
               ),
             ),
           ),
