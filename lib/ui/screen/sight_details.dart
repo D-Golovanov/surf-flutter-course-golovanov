@@ -154,6 +154,7 @@ class SightDetails extends StatelessWidget {
                       ),
                     ],
                   ),
+                  const SizedBox(height: 24.0),
                 ],
               ),
             ),
