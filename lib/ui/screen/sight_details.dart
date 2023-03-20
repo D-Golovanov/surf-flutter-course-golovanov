@@ -64,15 +64,15 @@ class SightDetails extends StatelessWidget {
                             .copyWith(color: AppColors.darkBlue),
                       ),
                       const SizedBox(width: 16.0),
-                      Text(
-                        sight.details,
+                      const Text(
+                        'закрыто до 10:00',
                         style: AppTypography.text14Description,
                       ),
                     ],
                   ),
                   const SizedBox(height: 24.0),
                   Text(
-                    'Пряный вкус радостной жизни вместе с шеф-поваром Изо Дзандзава, благодаря которой у гостей ресторана есть возможность выбирать из двух направлений: европейского и восточного',
+                    sight.details,
                     style: AppTypography.text14Description
                         .copyWith(color: AppColors.darkTextBlue),
                   ),

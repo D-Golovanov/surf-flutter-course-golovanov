@@ -84,8 +84,8 @@ class SightCard extends StatelessWidget {
                     style: AppTypography.text16CardTitle,
                   ),
                   const SizedBox(height: 2.0),
-                  Text(
-                    sight.details,
+                  const Text(
+                    'зактыть до 10:00',
                     style: AppTypography.text14Description,
                   ),
                 ],
