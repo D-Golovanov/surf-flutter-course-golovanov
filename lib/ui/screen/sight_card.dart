@@ -35,6 +35,7 @@ class SightCard extends StatelessWidget {
                     ),
                   ),
                 ),
+
                 Opacity(
                   opacity: 0.4,
                   child: Container(
@@ -49,23 +50,22 @@ class SightCard extends StatelessWidget {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                       ),
+
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      sight.type,
+                      style: AppTypography.textCardCategory,
+                    ),
+                    SvgPicture.asset(
+                      AppAssets.favorite,
+
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16.0,
-                    vertical: 16.0,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        sight.type,
-                        style: AppTypography.text14Category,
-                      ),
-                      SvgPicture.asset(
-                        AppAssets.favorite,
                       ),
                     ],
                   ),
