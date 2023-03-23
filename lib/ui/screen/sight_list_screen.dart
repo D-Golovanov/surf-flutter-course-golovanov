@@ -12,12 +12,7 @@ class BigAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final statusBarHeigth = MediaQuery.of(context).padding.top;
 
-    final heightAppBar = context.findRenderObject() as RenderBox;
-    // ignore: avoid_print
-    print(heightAppBar.size.height - statusBarHeigth); //132.0
-
     return Column(
-      // height: heigth,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: statusBarHeigth + 40.0),
@@ -32,25 +27,6 @@ class BigAppBar extends StatelessWidget implements PreferredSizeWidget {
         const SizedBox(height: 16.0),
       ],
     );
-    // AppBar(
-    //   backgroundColor: AppColors.white,
-    //   elevation: 0.0,
-    //   toolbarHeight: 0.0,
-    //   bottom: const PreferredSize(
-    //     preferredSize: Size.fromHeight(72 + 40),
-    //     child: SizedBox(
-    //       width: double.infinity,
-    //       child: Padding(
-    //         padding: EdgeInsets.symmetric(horizontal: 16.0),
-    //         child: Text(
-    //           AppStrings.appTitle,
-    //           textAlign: TextAlign.left,
-    //           style: AppTypography.text32AppTitle,
-    //         ),
-    //       ),
-    //     ),
-    //   ),
-    // );
   }
 
   @override
@@ -73,7 +49,6 @@ class _SightListScreenState extends State<SightListScreen> {
       appBar: const BigAppBar(),
       body: Column(
         children: [
-          // const SizedBox(height: 16.0),
           Expanded(
             child: ListView.separated(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
