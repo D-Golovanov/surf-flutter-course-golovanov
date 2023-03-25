@@ -6,6 +6,7 @@ class AppAssets {
   static const arrowBack = 'res/images/icons/arrow_back.svg';
   static const track = 'res/images/icons/go.svg';
   static const calendar = 'res/images/icons/calendar.svg';
+  static const photo = 'res/images/icons/photo.svg';
 }
 
 class AppDimensions {

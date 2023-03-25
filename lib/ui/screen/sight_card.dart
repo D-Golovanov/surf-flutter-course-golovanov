@@ -29,15 +29,49 @@ class SightCard extends StatelessWidget {
               Expanded(
                 child: Stack(
                   children: [
-                    Container(
-                      // height: 96.0,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(sight.url),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                    Image.network(
+                      sight.url,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) {
+                          return child;
+                        }
+
+                        return Stack(
+                          children: [
+                            Center(
+                              child: SvgPicture.asset(
+                                AppAssets.photo,
+                                width: 64.0,
+                                color: AppColors.backgroung,
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: LinearProgressIndicator(
+                                color: AppColors.green,
+                                backgroundColor: AppColors.backgroung,
+                                value: loadingProgress.expectedTotalBytes !=
+                                        null
+                                    ? loadingProgress.cumulativeBytesLoaded /
+                                        loadingProgress.expectedTotalBytes!
+                                    : null,
+                              ),
+                            ),
+                          ],
+                        );
+                      },
                     ),
+                    // Container(
+                    //   // height: 96.0,
+                    //   decoration: BoxDecoration(
+                    //     image: DecorationImage(
+                    //       image: NetworkImage(sight.url),
+                    //       fit: BoxFit.cover,
+                    //     ),
+                    //   ),
+                    // ),
                     Opacity(
                       opacity: 0.4,
                       child: Container(
@@ -81,15 +115,10 @@ class SightCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 16.0),
-                    ConstrainedBox(
-                      constraints: const BoxConstraints(
-                        maxWidth: 296 / 2,
-                      ),
-                      child: Text(
-                        sight.name,
-                        style: AppTypography.text16CardTitle,
-                        maxLines: 3,
-                      ),
+                    Text(
+                      sight.name,
+                      style: AppTypography.text16CardTitle,
+                      maxLines: 3,
                     ),
                     const SizedBox(height: 2.0),
                     const Text(

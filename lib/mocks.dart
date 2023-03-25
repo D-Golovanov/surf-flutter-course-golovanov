@@ -15,8 +15,9 @@ final List<Sight> mocks = [
     name: 'Эльбрус',
     lat: '78.198408',
     lon: '48.5106548',
+    // url: 'https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcSzN7CHz-sQ5Jl4vbuqyZM9wuzrtPm1VB1vua0FR-2rkn11BZ9eBZmtFlEloQKH2QO1SAMZkQTpcgavcJMq37VEDA',
     url:
-        'https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcSzN7CHz-sQ5Jl4vbuqyZM9wuzrtPm1VB1vua0FR-2rkn11BZ9eBZmtFlEloQKH2QO1SAMZkQTpcgavcJMq37VEDA',
+        'https://cdn.ventrata.com/image/upload/s--dSY5aV0A--/ar_1.5,c_fill,dpr_auto,q_auto,w_auto/v1586769359/Vista_do_Rei_7_e3bnpd.jpg',
     details:
         'Эльбру́с — стратовулкан на Кавказе — самая высокая горная вершина России и Европы при условии проведения границы между Европой и Азией по Главному Кавказскому хребту или южнее. Эльбрус включён в список высочайших вершин частей света «Семь вершин». Талая вода ледников, стекающих с его склонов, питает одни из наиболее крупных рек Северного Кавказа: Кубань, Малку и Баксан.',
     type: 'Природа',
