@@ -25,6 +25,37 @@ class SightDetails extends StatelessWidget {
                   sight.url,
                   height: 360.0,
                   fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) {
+                      return child;
+                    }
+
+                    return SizedBox(
+                      height: 360,
+                      child: Stack(
+                        children: [
+                          Center(
+                            child: SvgPicture.asset(
+                              AppAssets.photo,
+                              width: 64.0,
+                              color: AppColors.backgroung,
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: LinearProgressIndicator(
+                              color: AppColors.green,
+                              backgroundColor: AppColors.backgroung,
+                              value: loadingProgress.expectedTotalBytes != null
+                                  ? loadingProgress.cumulativeBytesLoaded /
+                                      loadingProgress.expectedTotalBytes!
+                                  : null,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
                 SafeArea(
                   child: Container(
