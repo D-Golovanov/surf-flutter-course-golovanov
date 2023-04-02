@@ -4,6 +4,7 @@ import 'package:places/assets/colors.dart';
 import 'package:places/assets/res.dart';
 import 'package:places/assets/strings.dart';
 import 'package:places/domain/sight.dart';
+import 'package:places/ui/widgets/bottom_bar.dart';
 
 class SightDetails extends StatelessWidget {
   final Sight sight;
@@ -17,10 +18,6 @@ class SightDetails extends StatelessWidget {
           children: [
             Stack(
               children: [
-                // Container(
-                //   color: AppColors.darkBlue,
-                //   height: 360.0,
-                // ),
                 Image.network(
                   sight.url,
                   height: 360.0,
@@ -192,6 +189,7 @@ class SightDetails extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: const BottomBar(),
     );
   }
 }

@@ -3,7 +3,8 @@ import 'package:places/assets/colors.dart';
 import 'package:places/assets/res.dart';
 import 'package:places/assets/strings.dart';
 import 'package:places/mocks.dart';
-import 'package:places/ui/screen/sight_card.dart';
+import 'package:places/ui/widgets/bottom_bar.dart';
+import 'package:places/ui/widgets/sight_card.dart';
 
 class BigAppBar extends StatelessWidget implements PreferredSizeWidget {
   const BigAppBar({super.key});
@@ -54,7 +55,10 @@ class _SightListScreenState extends State<SightListScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               itemCount: mocks.length,
               itemBuilder: (context, index) {
-                return SightCard(sight: mocks[index]);
+                return SightCard(
+                  sight: mocks[index],
+                  type: CardType.normal,
+                );
               },
               separatorBuilder: (context, index) =>
                   const SizedBox(height: 16.0),
@@ -62,6 +66,7 @@ class _SightListScreenState extends State<SightListScreen> {
           ),
         ],
       ),
+      bottomNavigationBar: const BottomBar(),
     );
   }
 }
