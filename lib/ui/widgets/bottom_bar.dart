@@ -16,28 +16,28 @@ class BottomBar extends StatelessWidget {
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
             AppAssets.list,
-            color: AppColors.darkTextBlue,
+            color: AppColors.secondary,
           ),
           label: 'null',
         ),
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
             AppAssets.map,
-            color: AppColors.darkTextBlue,
+            color: AppColors.secondary,
           ),
           label: '',
         ),
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
             AppAssets.favorite,
-            color: AppColors.darkTextBlue,
+            color: AppColors.secondary,
           ),
           label: '',
         ),
         BottomNavigationBarItem(
           icon: SvgPicture.asset(
             AppAssets.settings,
-            color: AppColors.darkTextBlue,
+            color: AppColors.secondary,
           ),
           label: '',
         ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:places/assets/colors.dart';
-import 'package:places/assets/res.dart';
 import 'package:places/assets/strings.dart';
 import 'package:places/mocks.dart';
 import 'package:places/ui/widgets/bottom_bar.dart';
@@ -28,21 +27,30 @@ class _VisitingScreenState extends State<VisitingScreen> {
         body: TabBarView(
           physics: const BouncingScrollPhysics(),
           children: [
-            ListView.separated(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16.0,
-                vertical: 24.0,
+            // ListView.separated(
+            //   padding: const EdgeInsets.symmetric(
+            //     horizontal: 16.0,
+            //     vertical: 24.0,
+            //   ),
+            //   itemCount: mocks.length,
+            //   itemBuilder: (context, index) {
+            //     return SightCard(
+            //       sight: mocks[index],
+            //       type: CardType.wantVisitPlaning,
+            //     );
+            //   },
+            //   separatorBuilder: (context, index) =>
+            //       const SizedBox(height: 16.0),
+            // ),
+            Column(children: [
+              FloatingActionButton(
+                onPressed: () {},
+                child: Icon(Icons.access_alarms),
               ),
-              itemCount: mocks.length,
-              itemBuilder: (context, index) {
-                return SightCard(
-                  sight: mocks[index],
-                  type: CardType.wantVisitPlaning,
-                );
-              },
-              separatorBuilder: (context, index) =>
-                  const SizedBox(height: 16.0),
-            ),
+              TextField(
+                decoration: InputDecoration(border: OutlineInputBorder()),
+              )
+            ]),
             ListView.separated(
               padding: const EdgeInsets.symmetric(
                 horizontal: 16.0,
@@ -75,18 +83,11 @@ class CustomTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.backgroung,
+        color: AppColors.ligthBackgroung,
         borderRadius: BorderRadius.circular(20.0),
       ),
       margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6.0),
       child: TabBar(
-        indicator: BoxDecoration(
-          color: AppColors.darkTextBlue,
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        indicatorWeight: 0.0,
-        unselectedLabelColor: AppColors.lightTextBlue.withOpacity(0.56),
-        labelStyle: AppTypography.text14Category,
         splashBorderRadius: BorderRadius.circular(20.0),
         tabs: const [
           Tab(

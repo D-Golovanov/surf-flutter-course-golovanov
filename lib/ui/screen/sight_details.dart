@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/assets/colors.dart';
 import 'package:places/assets/res.dart';
 import 'package:places/assets/strings.dart';
+import 'package:places/assets/text_style.dart';
 import 'package:places/domain/sight.dart';
 import 'package:places/ui/widgets/bottom_bar.dart';
 
@@ -35,14 +36,14 @@ class SightDetails extends StatelessWidget {
                             child: SvgPicture.asset(
                               AppAssets.photo,
                               width: 64.0,
-                              color: AppColors.backgroung,
+                              color: AppColors.ligthBackgroung,
                             ),
                           ),
                           Align(
                             alignment: Alignment.bottomCenter,
                             child: LinearProgressIndicator(
-                              color: AppColors.green,
-                              backgroundColor: AppColors.backgroung,
+                              color: AppColors.ligthGreen,
+                              backgroundColor: AppColors.ligthBackgroung,
                               value: loadingProgress.expectedTotalBytes != null
                                   ? loadingProgress.cumulativeBytesLoaded /
                                       loadingProgress.expectedTotalBytes!
@@ -66,7 +67,7 @@ class SightDetails extends StatelessWidget {
                     child: Center(
                       child: SvgPicture.asset(
                         AppAssets.arrowBack,
-                        color: AppColors.darkBlue,
+                        color: AppColors.ligthMain,
                       ),
                     ),
                   ),
@@ -81,33 +82,33 @@ class SightDetails extends StatelessWidget {
                   const SizedBox(height: 24.0),
                   Text(
                     sight.name,
-                    style: AppTypography.title24Detail,
+                    style: AppTypography.title24Bold,
                   ),
                   const SizedBox(height: 2.0),
                   Row(
                     children: [
                       Text(
                         sight.type,
-                        style: AppTypography.text14Category
-                            .copyWith(color: AppColors.darkBlue),
+                        style: AppTypography.small14Bold
+                            .copyWith(color: AppColors.ligthMain),
                       ),
                       const SizedBox(width: 16.0),
                       const Text(
                         'закрыто до 10:00',
-                        style: AppTypography.text14Description,
+                        style: AppTypography.small14Regular,
                       ),
                     ],
                   ),
                   const SizedBox(height: 24.0),
                   Text(
                     sight.details,
-                    style: AppTypography.text14Description
-                        .copyWith(color: AppColors.darkTextBlue),
+                    style: AppTypography.small14Regular
+                        .copyWith(color: AppColors.secondary),
                   ),
                   const SizedBox(height: 24.0),
                   Container(
                     decoration: BoxDecoration(
-                      color: AppColors.green,
+                      color: AppColors.ligthGreen,
                       borderRadius: BorderRadius.circular(12.0),
                     ),
                     height: 48.0,
@@ -119,7 +120,7 @@ class SightDetails extends StatelessWidget {
                         const SizedBox(width: 8.0),
                         Text(
                           AppStrings.buttonCreateTrack.toUpperCase(),
-                          style: AppTypography.button14,
+                          style: AppTypography.button14Bold,
                         ),
                       ],
                     ),
@@ -127,7 +128,7 @@ class SightDetails extends StatelessWidget {
                   const SizedBox(height: 24.0),
                   Divider(
                     height: 0.8,
-                    color: AppColors.lightTextBlue.withOpacity(0.56),
+                    color: AppColors.secondary2.withOpacity(0.56),
                   ),
                   const SizedBox(height: 8.0),
                   Row(
@@ -140,17 +141,15 @@ class SightDetails extends StatelessWidget {
                             children: [
                               SvgPicture.asset(
                                 AppAssets.calendar,
-                                color:
-                                    AppColors.lightTextBlue.withOpacity(0.56),
+                                color: AppColors.secondary2.withOpacity(0.56),
                                 height: 24.0,
                                 width: 24.0,
                               ),
                               const SizedBox(width: 8.0),
                               Text(
                                 AppStrings.plan,
-                                style: AppTypography.text14Description.copyWith(
-                                  color:
-                                      AppColors.lightTextBlue.withOpacity(0.56),
+                                style: AppTypography.small14Regular.copyWith(
+                                  color: AppColors.secondary2.withOpacity(0.56),
                                 ),
                               ),
                             ],
@@ -165,15 +164,15 @@ class SightDetails extends StatelessWidget {
                             children: [
                               SvgPicture.asset(
                                 AppAssets.favorite,
-                                color: AppColors.darkTextBlue,
+                                color: AppColors.secondary,
                                 height: 24.0,
                                 width: 24.0,
                               ),
                               const SizedBox(width: 8.0),
                               Text(
                                 AppStrings.addFavorite,
-                                style: AppTypography.text14Description.copyWith(
-                                  color: AppColors.darkTextBlue,
+                                style: AppTypography.small14Regular.copyWith(
+                                  color: AppColors.secondary,
                                 ),
                               ),
                             ],

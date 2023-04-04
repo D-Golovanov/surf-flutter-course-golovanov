@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:places/assets/colors.dart';
-import 'package:places/assets/res.dart';
-import 'package:places/assets/strings.dart';
 
 class CenterAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -18,13 +15,7 @@ class CenterAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      centerTitle: true,
-      backgroundColor: AppColors.white,
-      elevation: 0.0,
-      title: const Text(
-        AppStrings.appTitleFavorites,
-        style: AppTypography.title18CenterAppBar,
-      ),
+      title: Text(title),
       bottom: PreferredSize(
         preferredSize: Size.fromHeight(bottomWidgetHeigth),
         child: bottomWidget,

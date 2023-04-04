@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/assets/colors.dart';
 import 'package:places/assets/res.dart';
+import 'package:places/assets/text_style.dart';
 import 'package:places/domain/sight.dart';
 import 'package:places/ui/screen/sight_details.dart';
 
@@ -56,7 +57,7 @@ class _TextCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: AppColors.backgroung,
+      color: AppColors.ligthBackgroung,
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +65,7 @@ class _TextCardWidget extends StatelessWidget {
           const SizedBox(height: 16.0),
           Text(
             sight.name,
-            style: AppTypography.text16CardTitle,
+            style: AppTypography.text16Medium,
             maxLines: 3,
           ),
           const SizedBox(height: 2.0),
@@ -73,8 +74,8 @@ class _TextCardWidget extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 12.0),
               child: Text(
                 'Запланировано на 12 окт. 2020',
-                style: AppTypography.text14Description
-                    .copyWith(color: AppColors.green),
+                style: AppTypography.small14Regular
+                    .copyWith(color: AppColors.ligthGreen),
               ),
             ),
           if (type == CardType.visited)
@@ -82,12 +83,12 @@ class _TextCardWidget extends StatelessWidget {
               padding: EdgeInsets.only(bottom: 12.0),
               child: Text(
                 'Цель достигнута 12 окт. 2020',
-                style: AppTypography.text14Description,
+                style: AppTypography.small14Regular,
               ),
             ),
           const Text(
             'закрыто до 10:00',
-            style: AppTypography.text14Description,
+            style: AppTypography.small14Regular,
           ),
           const SizedBox(height: 16.0),
         ],
@@ -122,14 +123,14 @@ class _ImageCardWidget extends StatelessWidget {
                     child: SvgPicture.asset(
                       AppAssets.photo,
                       width: 64.0,
-                      color: AppColors.backgroung,
+                      color: AppColors.ligthBackgroung,
                     ),
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: LinearProgressIndicator(
-                      color: AppColors.green,
-                      backgroundColor: AppColors.backgroung,
+                      color: AppColors.ligthGreen,
+                      backgroundColor: AppColors.ligthBackgroung,
                       value: loadingProgress.expectedTotalBytes != null
                           ? loadingProgress.cumulativeBytesLoaded /
                               loadingProgress.expectedTotalBytes!
@@ -147,8 +148,8 @@ class _ImageCardWidget extends StatelessWidget {
                 backgroundBlendMode: BlendMode.multiply,
                 gradient: LinearGradient(
                   colors: [
-                    AppColors.darkBlue,
-                    AppColors.darkTextBlue.withOpacity(0.08),
+                    AppColors.ligthMain,
+                    AppColors.secondary.withOpacity(0.08),
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -163,7 +164,7 @@ class _ImageCardWidget extends StatelessWidget {
               children: [
                 Text(
                   sight.type,
-                  style: AppTypography.text14Category,
+                  style: AppTypography.small14Bold,
                 ),
                 if (type == CardType.normal)
                   IconButton(
