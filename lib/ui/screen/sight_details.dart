@@ -4,6 +4,7 @@ import 'package:places/assets/colors.dart';
 import 'package:places/assets/res.dart';
 import 'package:places/assets/strings.dart';
 import 'package:places/assets/text_style.dart';
+import 'package:places/assets/themes.dart';
 import 'package:places/domain/sight.dart';
 import 'package:places/ui/widgets/bottom_bar.dart';
 
@@ -36,14 +37,18 @@ class SightDetails extends StatelessWidget {
                             child: SvgPicture.asset(
                               AppAssets.photo,
                               width: 64.0,
-                              color: AppColors.ligthBackgroung,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .customBackground,
                             ),
                           ),
                           Align(
                             alignment: Alignment.bottomCenter,
                             child: LinearProgressIndicator(
-                              color: AppColors.ligthGreen,
-                              backgroundColor: AppColors.ligthBackgroung,
+                              color: Theme.of(context).colorScheme.green,
+                              backgroundColor: Theme.of(context)
+                                  .colorScheme
+                                  .customBackground,
                               value: loadingProgress.expectedTotalBytes != null
                                   ? loadingProgress.cumulativeBytesLoaded /
                                       loadingProgress.expectedTotalBytes!
@@ -82,33 +87,42 @@ class SightDetails extends StatelessWidget {
                   const SizedBox(height: 24.0),
                   Text(
                     sight.name,
-                    style: AppTypography.title24Bold,
+                    style: Theme.of(context).textTheme.title24Bold.copyWith(
+                          color: Theme.of(context).colorScheme.textColor,
+                        ),
                   ),
                   const SizedBox(height: 2.0),
                   Row(
                     children: [
                       Text(
                         sight.type,
-                        style: AppTypography.small14Bold
-                            .copyWith(color: AppColors.ligthMain),
+                        style: Theme.of(context).textTheme.small14Bold.copyWith(
+                              color: Theme.of(context).colorScheme.secondary2,
+                            ),
                       ),
                       const SizedBox(width: 16.0),
-                      const Text(
+                      Text(
                         'закрыто до 10:00',
-                        style: AppTypography.small14Regular,
+                        style:
+                            Theme.of(context).textTheme.small14Regular.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .secondary2Opacity,
+                                ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 24.0),
                   Text(
                     sight.details,
-                    style: AppTypography.small14Regular
-                        .copyWith(color: AppColors.secondary),
+                    style: Theme.of(context).textTheme.small14Regular.copyWith(
+                          color: Theme.of(context).colorScheme.textColor,
+                        ),
                   ),
                   const SizedBox(height: 24.0),
                   Container(
                     decoration: BoxDecoration(
-                      color: AppColors.ligthGreen,
+                      color: Theme.of(context).colorScheme.green,
                       borderRadius: BorderRadius.circular(12.0),
                     ),
                     height: 48.0,

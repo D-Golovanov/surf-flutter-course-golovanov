@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:places/assets/colors.dart';
 import 'package:places/assets/strings.dart';
+import 'package:places/assets/themes.dart';
+import 'package:places/main.dart';
 import 'package:places/mocks.dart';
 import 'package:places/ui/widgets/bottom_bar.dart';
 import 'package:places/ui/widgets/center_app_bar.dart';
@@ -27,30 +28,21 @@ class _VisitingScreenState extends State<VisitingScreen> {
         body: TabBarView(
           physics: const BouncingScrollPhysics(),
           children: [
-            // ListView.separated(
-            //   padding: const EdgeInsets.symmetric(
-            //     horizontal: 16.0,
-            //     vertical: 24.0,
-            //   ),
-            //   itemCount: mocks.length,
-            //   itemBuilder: (context, index) {
-            //     return SightCard(
-            //       sight: mocks[index],
-            //       type: CardType.wantVisitPlaning,
-            //     );
-            //   },
-            //   separatorBuilder: (context, index) =>
-            //       const SizedBox(height: 16.0),
-            // ),
-            Column(children: [
-              FloatingActionButton(
-                onPressed: () {},
-                child: Icon(Icons.access_alarms),
+            ListView.separated(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 24.0,
               ),
-              TextField(
-                decoration: InputDecoration(border: OutlineInputBorder()),
-              )
-            ]),
+              itemCount: mocks.length,
+              itemBuilder: (context, index) {
+                return SightCard(
+                  sight: mocks[index],
+                  type: CardType.wantVisitPlaning,
+                );
+              },
+              separatorBuilder: (context, index) =>
+                  const SizedBox(height: 16.0),
+            ),
             ListView.separated(
               padding: const EdgeInsets.symmetric(
                 horizontal: 16.0,
@@ -83,7 +75,7 @@ class CustomTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.ligthBackgroung,
+        color: Theme.of(context).colorScheme.customBackground,
         borderRadius: BorderRadius.circular(20.0),
       ),
       margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6.0),

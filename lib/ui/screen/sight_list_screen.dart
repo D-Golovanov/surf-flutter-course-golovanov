@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:places/assets/colors.dart';
 import 'package:places/assets/strings.dart';
-import 'package:places/assets/text_style.dart';
+import 'package:places/assets/themes.dart';
+import 'package:places/main.dart';
 import 'package:places/mocks.dart';
 import 'package:places/ui/widgets/bottom_bar.dart';
 import 'package:places/ui/widgets/sight_card.dart';
@@ -18,7 +18,6 @@ class _SightListScreenState extends State<SightListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: AppColors.white,
       appBar: const _BigAppBar(),
       body: Column(
         children: [
@@ -59,8 +58,10 @@ class _BigAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Text(
             AppStrings.appTitle,
             textAlign: TextAlign.left,
-            style: AppTypography.largeTitle32Bold
-                .copyWith(color: AppColors.ligthMain),
+            style: Theme.of(context)
+                .textTheme
+                .largeTitle32Bold
+                .copyWith(color: Theme.of(context).colorScheme.textAppBarColor),
           ),
         ),
         const SizedBox(height: 16.0),
