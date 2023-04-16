@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/assets/colors.dart';
 import 'package:places/assets/res.dart';
+import 'package:places/assets/text_style.dart';
+import 'package:places/assets/themes.dart';
 import 'package:places/domain/sight.dart';
+import 'package:places/main.dart';
 import 'package:places/ui/screen/sight_details.dart';
 
 enum CardType { normal, wantVisit, wantVisitPlaning, visited }
@@ -56,7 +59,7 @@ class _TextCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      color: AppColors.backgroung,
+      color: Theme.of(context).colorScheme.customBackground,
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,8 +67,12 @@ class _TextCardWidget extends StatelessWidget {
           const SizedBox(height: 16.0),
           Text(
             sight.name,
-            style: AppTypography.text16CardTitle,
+            style: Theme.of(context)
+                .textTheme
+                .text16Medium
+                .copyWith(color: Theme.of(context).colorScheme.textColor),
             maxLines: 3,
+            overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 2.0),
           if (type == CardType.wantVisitPlaning)
@@ -73,21 +80,29 @@ class _TextCardWidget extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 12.0),
               child: Text(
                 'Запланировано на 12 окт. 2020',
-                style: AppTypography.text14Description
-                    .copyWith(color: AppColors.green),
+                style: Theme.of(context)
+                    .textTheme
+                    .small14Regular
+                    .copyWith(color: Theme.of(context).colorScheme.green),
               ),
             ),
           if (type == CardType.visited)
-            const Padding(
-              padding: EdgeInsets.only(bottom: 12.0),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 12.0),
               child: Text(
                 'Цель достигнута 12 окт. 2020',
-                style: AppTypography.text14Description,
+                style: Theme.of(context)
+                    .textTheme
+                    .small14Regular
+                    .copyWith(color: Theme.of(context).colorScheme.secondary2),
               ),
             ),
-          const Text(
+          Text(
             'закрыто до 10:00',
-            style: AppTypography.text14Description,
+            style: Theme.of(context)
+                .textTheme
+                .small14Regular
+                .copyWith(color: Theme.of(context).colorScheme.secondary2),
           ),
           const SizedBox(height: 16.0),
         ],
@@ -122,14 +137,15 @@ class _ImageCardWidget extends StatelessWidget {
                     child: SvgPicture.asset(
                       AppAssets.photo,
                       width: 64.0,
-                      color: AppColors.backgroung,
+                      color: Theme.of(context).colorScheme.customBackground,
                     ),
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: LinearProgressIndicator(
-                      color: AppColors.green,
-                      backgroundColor: AppColors.backgroung,
+                      color: Theme.of(context).colorScheme.green,
+                      backgroundColor:
+                          Theme.of(context).colorScheme.customBackground,
                       value: loadingProgress.expectedTotalBytes != null
                           ? loadingProgress.cumulativeBytesLoaded /
                               loadingProgress.expectedTotalBytes!
@@ -147,8 +163,8 @@ class _ImageCardWidget extends StatelessWidget {
                 backgroundBlendMode: BlendMode.multiply,
                 gradient: LinearGradient(
                   colors: [
-                    AppColors.darkBlue,
-                    AppColors.darkTextBlue.withOpacity(0.08),
+                    AppColors.ligthMain,
+                    AppColors.secondary.withOpacity(0.08),
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -163,7 +179,10 @@ class _ImageCardWidget extends StatelessWidget {
               children: [
                 Text(
                   sight.type,
-                  style: AppTypography.text14Category,
+                  style: Theme.of(context)
+                      .textTheme
+                      .small14Bold
+                      .copyWith(color: AppColors.white),
                 ),
                 if (type == CardType.normal)
                   IconButton(

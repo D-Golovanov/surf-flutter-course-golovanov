@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:places/ui/screen/sight_list_screen.dart';
+import 'package:places/assets/themes.dart';
 import 'package:places/ui/screen/visiting_screen.dart';
 
 void main() {
@@ -15,9 +15,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: AppTheme.ligthThemeData,
+      darkTheme: AppTheme.darkThemeData,
+      themeMode: ThemeMode.dark,
       home: const VisitingScreen(),
     );
   }

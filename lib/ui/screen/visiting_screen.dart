@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:places/assets/colors.dart';
-import 'package:places/assets/res.dart';
 import 'package:places/assets/strings.dart';
+import 'package:places/assets/themes.dart';
+import 'package:places/main.dart';
 import 'package:places/mocks.dart';
 import 'package:places/ui/widgets/bottom_bar.dart';
 import 'package:places/ui/widgets/center_app_bar.dart';
@@ -75,18 +75,11 @@ class CustomTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.backgroung,
+        color: Theme.of(context).colorScheme.customBackground,
         borderRadius: BorderRadius.circular(20.0),
       ),
       margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6.0),
       child: TabBar(
-        indicator: BoxDecoration(
-          color: AppColors.darkTextBlue,
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        indicatorWeight: 0.0,
-        unselectedLabelColor: AppColors.lightTextBlue.withOpacity(0.56),
-        labelStyle: AppTypography.text14Category,
         splashBorderRadius: BorderRadius.circular(20.0),
         tabs: const [
           Tab(
