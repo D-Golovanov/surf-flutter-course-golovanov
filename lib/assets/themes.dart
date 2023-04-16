@@ -34,6 +34,27 @@ class AppTheme {
       showUnselectedLabels: false,
       backgroundColor: AppColors.white,
     ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.ligthGreen,
+        foregroundColor: AppColors.white,
+        minimumSize: const Size.fromHeight(48.0),
+        elevation: 0.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        textStyle: AppTypography.button14Bold,
+      ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        backgroundColor: AppColors.white,
+        foregroundColor: AppColors.secondary,
+        maximumSize: const Size(double.infinity, 40.0),
+        elevation: 0.0,
+        textStyle: AppTypography.small14Regular,
+      ),
+    ),
     /*
         textTheme: TextTheme(
           //Large Title - заголовок интересных мест
@@ -85,6 +106,27 @@ class AppTheme {
       showSelectedLabels: false,
       showUnselectedLabels: false,
       backgroundColor: AppColors.darkMain,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.darkGreen,
+        foregroundColor: AppColors.white,
+        minimumSize: const Size.fromHeight(48.0),
+        elevation: 0.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        textStyle: AppTypography.button14Bold,
+      ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        backgroundColor: AppColors.darkMain,
+        foregroundColor: AppColors.white,
+        maximumSize: const Size(double.infinity, 40.0),
+        elevation: 0.0,
+        textStyle: AppTypography.small14Regular,
+      ),
     ),
   );
 }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:places/assets/res.dart';
 import 'package:places/assets/strings.dart';
+import 'package:places/assets/text_style.dart';
 import 'package:places/assets/themes.dart';
 import 'package:places/main.dart';
 import 'package:places/mocks.dart';

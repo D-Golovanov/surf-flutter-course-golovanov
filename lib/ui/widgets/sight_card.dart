@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/assets/colors.dart';
 import 'package:places/assets/res.dart';
-import 'package:places/assets/text_style.dart';
 import 'package:places/assets/themes.dart';
 import 'package:places/domain/sight.dart';
-import 'package:places/main.dart';
 import 'package:places/ui/screen/sight_details.dart';
 
 enum CardType { normal, wantVisit, wantVisitPlaning, visited }
@@ -185,49 +183,44 @@ class _ImageCardWidget extends StatelessWidget {
                       .copyWith(color: AppColors.white),
                 ),
                 if (type == CardType.normal)
-                  IconButton(
-                    constraints: const BoxConstraints(),
-                    onPressed: () {},
-                    icon: SvgPicture.asset(
-                      AppAssets.favorite,
-                    ),
+                  IconButtonCard(
+                    assetIconPath: AppAssets.favorite,
+                    onPressed: () {
+                      debugPrint('Press favorite');
+                    },
                   ),
                 if (type == CardType.wantVisit ||
                     type == CardType.wantVisitPlaning)
                   Row(
                     children: [
-                      IconButton(
-                        constraints: const BoxConstraints(),
-                        onPressed: () {},
-                        icon: SvgPicture.asset(
-                          AppAssets.calendar,
-                        ),
+                      IconButtonCard(
+                        assetIconPath: AppAssets.calendar,
+                        onPressed: () {
+                          debugPrint('Press calendar');
+                        },
                       ),
-                      IconButton(
-                        constraints: const BoxConstraints(),
-                        onPressed: () {},
-                        icon: SvgPicture.asset(
-                          AppAssets.close,
-                        ),
+                      IconButtonCard(
+                        assetIconPath: AppAssets.close,
+                        onPressed: () {
+                          debugPrint('Press clouse');
+                        },
                       ),
                     ],
                   ),
                 if (type == CardType.visited)
                   Row(
                     children: [
-                      IconButton(
-                        constraints: const BoxConstraints(),
-                        onPressed: () {},
-                        icon: SvgPicture.asset(
-                          AppAssets.share,
-                        ),
+                      IconButtonCard(
+                        assetIconPath: AppAssets.share,
+                        onPressed: () {
+                          debugPrint('Press share');
+                        },
                       ),
-                      IconButton(
-                        constraints: const BoxConstraints(),
-                        onPressed: () {},
-                        icon: SvgPicture.asset(
-                          AppAssets.close,
-                        ),
+                      IconButtonCard(
+                        assetIconPath: AppAssets.close,
+                        onPressed: () {
+                          debugPrint('Press clouse');
+                        },
                       ),
                     ],
                   ),
@@ -236,6 +229,26 @@ class _ImageCardWidget extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class IconButtonCard extends StatelessWidget {
+  final String assetIconPath;
+  final VoidCallback onPressed;
+
+  const IconButtonCard({
+    super.key,
+    required this.assetIconPath,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      constraints: const BoxConstraints(),
+      onPressed: onPressed,
+      icon: SvgPicture.asset(assetIconPath),
     );
   }
 }
