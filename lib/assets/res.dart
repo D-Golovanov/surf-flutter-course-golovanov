@@ -14,4 +14,13 @@ class AppAssets {
   static const photo = 'res/images/icons/photo.svg';
   static const share = 'res/images/icons/share.svg';
   static const close = 'res/images/icons/close.svg';
+
+  static const filterCheckLight = 'res/images/icons/tick_choice_light.svg';
+  static const filterCheckDark = 'res/images/icons/tick_choice_dark.svg';
+  static const categoryHotel = 'res/images/icons/hotel.svg';
+  static const categoryRestourant = 'res/images/icons/restourant.svg';
+  static const categoryCafe = 'res/images/icons/cafe.svg';
+  static const categoryMuseum = 'res/images/icons/museum.svg';
+  static const categoryPark = 'res/images/icons/park.svg';
+  static const categoryParticular = 'res/images/icons/particular_place.svg';
 }

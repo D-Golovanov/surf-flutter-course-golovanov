@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:places/assets/themes.dart';
+import 'package:places/ui/screen/filters_screen.dart';
 import 'package:places/ui/screen/sight_list_screen.dart';
 import 'package:places/ui/screen/visiting_screen.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.ligthThemeData,
       darkTheme: AppTheme.darkThemeData,
       themeMode: ThemeMode.dark,
-      home: const SightListScreen(),
+      home: const FiltersScreen(),
     );
   }
 }

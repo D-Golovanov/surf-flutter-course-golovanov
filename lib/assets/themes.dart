@@ -44,6 +44,8 @@ class AppTheme {
           borderRadius: BorderRadius.circular(12.0),
         ),
         textStyle: AppTypography.button14Bold,
+        disabledBackgroundColor: AppColors.ligthBackgroung,
+        disabledForegroundColor: AppColors.secondary2Opacity,
       ),
     ),
     textButtonTheme: TextButtonThemeData(
@@ -54,6 +56,17 @@ class AppTheme {
         elevation: 0.0,
         textStyle: AppTypography.small14Regular,
       ),
+    ),
+    sliderTheme: SliderThemeData(
+      thumbColor: AppColors.white,
+      activeTrackColor: AppColors.ligthGreen,
+      inactiveTrackColor: AppColors.secondary2Opacity,
+      trackHeight: 2.0,
+      rangeThumbShape: const RoundRangeSliderThumbShape(
+        elevation: 4.0,
+        pressedElevation: 4.0,
+      ),
+      overlayColor: AppColors.ligthGreen.withOpacity(0.12),
     ),
     /*
         textTheme: TextTheme(
@@ -117,6 +130,8 @@ class AppTheme {
           borderRadius: BorderRadius.circular(12.0),
         ),
         textStyle: AppTypography.button14Bold,
+        disabledBackgroundColor: AppColors.darkBlack,
+        disabledForegroundColor: AppColors.secondary2Opacity,
       ),
     ),
     textButtonTheme: TextButtonThemeData(
@@ -127,6 +142,17 @@ class AppTheme {
         elevation: 0.0,
         textStyle: AppTypography.small14Regular,
       ),
+    ),
+    sliderTheme: SliderThemeData(
+      thumbColor: AppColors.white,
+      activeTrackColor: AppColors.darkGreen,
+      inactiveTrackColor: AppColors.secondary2Opacity,
+      trackHeight: 2.0,
+      rangeThumbShape: const RoundRangeSliderThumbShape(
+        elevation: 4.0,
+        pressedElevation: 4.0,
+      ),
+      overlayColor: AppColors.darkGreen.withOpacity(0.12),
     ),
   );
 }
@@ -159,8 +185,25 @@ extension CustomTextTheme on TextTheme {
   TextStyle get title24Bold => AppTypography.title24Bold;
   TextStyle get subtitle18Medium => AppTypography.subtitle18Medium;
   TextStyle get text16Medium => AppTypography.text16Medium;
+  TextStyle get text16Regular => AppTypography.text16Regular;
   TextStyle get small14Bold => AppTypography.small14Bold;
   TextStyle get small14Regular => AppTypography.small14Regular;
-  TextStyle get superSmall14Regular => AppTypography.superSmall14Regular;
+  TextStyle get superSmall14Regular => AppTypography.superSmall12Regular;
   TextStyle get button14Bold => AppTypography.button14Bold;
+}
+
+extension ActionTextButtonAppBar on ThemeData {
+  ButtonStyle get greenTextButtonTheme => brightness == Brightness.light
+      ? TextButton.styleFrom(
+          backgroundColor: AppColors.white,
+          foregroundColor: AppColors.ligthGreen,
+          elevation: 0.0,
+          textStyle: AppTypography.text16Medium,
+        )
+      : TextButton.styleFrom(
+          backgroundColor: AppColors.darkMain,
+          foregroundColor: AppColors.darkGreen,
+          elevation: 0.0,
+          textStyle: AppTypography.text16Medium,
+        );
 }

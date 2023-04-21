@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/assets/colors.dart';
 import 'package:places/assets/res.dart';
 import 'package:places/assets/strings.dart';
-import 'package:places/assets/text_style.dart';
 import 'package:places/assets/themes.dart';
 import 'package:places/domain/sight.dart';
 import 'package:places/ui/widgets/bottom_bar.dart';
@@ -144,7 +143,6 @@ class SightDetails extends StatelessWidget {
                             AppAssets.calendar,
                             color: Theme.of(context).colorScheme.secondary,
                           ),
-                          // icon: Icon(Icons.calendar_month_rounded),
                           label: const Text(AppStrings.plan),
                         ),
                       ),
@@ -157,56 +155,9 @@ class SightDetails extends StatelessWidget {
                             AppAssets.favorite,
                             color: Theme.of(context).colorScheme.secondary,
                           ),
-                          // icon: Icon(Icons.calendar_month_rounded),
                           label: const Text(AppStrings.addFavorite),
                         ),
                       ),
-                      // Expanded(
-                      //   child: Container(
-                      //     padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      //     child: Row(
-                      //       mainAxisAlignment: MainAxisAlignment.center,
-                      //       children: [
-                      //         SvgPicture.asset(
-                      //           AppAssets.calendar,
-                      //           color: AppColors.secondary2.withOpacity(0.56),
-                      //           height: 24.0,
-                      //           width: 24.0,
-                      //         ),
-                      //         const SizedBox(width: 8.0),
-                      //         Text(
-                      //           AppStrings.plan,
-                      //           style: AppTypography.small14Regular.copyWith(
-                      //             color: AppColors.secondary2.withOpacity(0.56),
-                      //           ),
-                      //         ),
-                      //       ],
-                      //     ),
-                      //   ),
-                      // ),
-                      // Expanded(
-                      //   child: Container(
-                      //     padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      //     child: Row(
-                      //       mainAxisAlignment: MainAxisAlignment.center,
-                      //       children: [
-                      //         SvgPicture.asset(
-                      //           AppAssets.favorite,
-                      //           color: AppColors.secondary,
-                      //           height: 24.0,
-                      //           width: 24.0,
-                      //         ),
-                      //         const SizedBox(width: 8.0),
-                      //         Text(
-                      //           AppStrings.addFavorite,
-                      //           style: AppTypography.small14Regular.copyWith(
-                      //             color: AppColors.secondary,
-                      //           ),
-                      //         ),
-                      //       ],
-                      //     ),
-                      //   ),
-                      // ),
                     ],
                   ),
                   const SizedBox(height: 24.0),
