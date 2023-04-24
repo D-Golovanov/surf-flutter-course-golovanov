@@ -24,4 +24,9 @@ class AppStrings {
   static const kilometers = 'км';
   static const clearAppBar = 'Очистить';
   static const showButton = 'Показать';
+
+  //Settings
+  static const titleAppBarSettings = 'Настройки';
+  static const darkThtme = 'Тёмная тема';
+  static const watchTutorial = 'Смотреть туториал';
 }

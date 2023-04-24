@@ -60,7 +60,7 @@ class _VisitingScreenState extends State<VisitingScreen> {
             ),
           ],
         ),
-        bottomNavigationBar: const BottomBar(),
+        // bottomNavigationBar: const BottomBar(),
       ),
     );
   }

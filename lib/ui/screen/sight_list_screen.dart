@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:places/assets/res.dart';
 import 'package:places/assets/strings.dart';
-import 'package:places/assets/text_style.dart';
 import 'package:places/assets/themes.dart';
-import 'package:places/main.dart';
 import 'package:places/mocks.dart';
-import 'package:places/ui/widgets/bottom_bar.dart';
 import 'package:places/ui/widgets/sight_card.dart';
 
 class SightListScreen extends StatefulWidget {
@@ -17,6 +12,7 @@ class SightListScreen extends StatefulWidget {
 }
 
 class _SightListScreenState extends State<SightListScreen> {
+  bool theme = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +36,7 @@ class _SightListScreenState extends State<SightListScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: const BottomBar(),
+      // bottomNavigationBar: const BottomBar(),
     );
   }
 }

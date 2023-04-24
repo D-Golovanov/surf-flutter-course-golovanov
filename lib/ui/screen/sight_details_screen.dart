@@ -7,9 +7,9 @@ import 'package:places/assets/themes.dart';
 import 'package:places/domain/sight.dart';
 import 'package:places/ui/widgets/bottom_bar.dart';
 
-class SightDetails extends StatelessWidget {
+class SightDetailsScreen extends StatelessWidget {
   final Sight sight;
-  const SightDetails({super.key, required this.sight});
+  const SightDetailsScreen({super.key, required this.sight});
 
   @override
   Widget build(BuildContext context) {
@@ -167,7 +167,7 @@ class SightDetails extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: const BottomBar(),
+      // bottomNavigationBar: const BottomBar(),
     );
   }
 }

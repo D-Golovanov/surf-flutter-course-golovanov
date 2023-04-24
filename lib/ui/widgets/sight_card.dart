@@ -4,7 +4,7 @@ import 'package:places/assets/colors.dart';
 import 'package:places/assets/res.dart';
 import 'package:places/assets/themes.dart';
 import 'package:places/domain/sight.dart';
-import 'package:places/ui/screen/sight_details.dart';
+import 'package:places/ui/screen/sight_details_screen.dart';
 
 enum CardType { normal, wantVisit, wantVisitPlaning, visited }
 
@@ -21,7 +21,7 @@ class SightCard extends StatelessWidget {
         Navigator.push<MaterialPageRoute>(
           context,
           MaterialPageRoute(
-            builder: (context) => SightDetails(sight: sight),
+            builder: (context) => SightDetailsScreen(sight: sight),
           ),
         );
       },

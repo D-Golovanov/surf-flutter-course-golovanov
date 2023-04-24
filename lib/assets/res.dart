@@ -23,4 +23,6 @@ class AppAssets {
   static const categoryMuseum = 'res/images/icons/museum.svg';
   static const categoryPark = 'res/images/icons/park.svg';
   static const categoryParticular = 'res/images/icons/particular_place.svg';
+
+  static const info = 'res/images/icons/info.svg';
 }
