@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:places/assets/strings.dart';
 import 'package:places/assets/themes.dart';
 import 'package:places/mocks.dart';
+import 'package:places/ui/screen/filters_screen.dart';
 import 'package:places/ui/widgets/sight_card.dart';
 
 class SightListScreen extends StatefulWidget {
@@ -20,6 +21,20 @@ class _SightListScreenState extends State<SightListScreen> {
       appBar: const _BigAppBar(),
       body: Column(
         children: [
+          GestureDetector(
+            onTap: () {
+              Navigator.push<MaterialPageRoute>(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const FiltersScreen(),
+                ),
+              );
+            },
+            child: const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text('Filter'),
+            ),
+          ),
           Expanded(
             child: ListView.separated(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),

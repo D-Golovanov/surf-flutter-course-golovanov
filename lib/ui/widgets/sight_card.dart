@@ -16,33 +16,103 @@ class SightCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push<MaterialPageRoute>(
-          context,
-          MaterialPageRoute(
-            builder: (context) => SightDetailsScreen(sight: sight),
-          ),
-        );
-      },
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12.0),
-        child: AspectRatio(
-          aspectRatio: 3 / 2,
-          child: Column(
-            children: [
-              _ImageCardWidget(
-                sight: sight,
-                type: type,
-              ),
-              _TextCardWidget(
-                sight: sight,
-                type: type,
-              ),
-            ],
+    return Stack(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(12.0),
+          child: AspectRatio(
+            aspectRatio: 3 / 2,
+            child: Column(
+              children: [
+                _ImageCardWidget(
+                  sight: sight,
+                  type: type,
+                ),
+                _TextCardWidget(
+                  sight: sight,
+                  type: type,
+                ),
+              ],
+            ),
           ),
         ),
-      ),
+        Positioned.fill(
+          child: Material(
+            type: MaterialType.transparency,
+            child: InkWell(
+              onTap: () {
+                Navigator.push<MaterialPageRoute>(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SightDetailsScreen(sight: sight),
+                  ),
+                );
+              },
+              highlightColor: Colors.transparent,
+              borderRadius: BorderRadius.circular(12.0),
+            ),
+          ),
+        ),
+        Positioned(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16.0, top: 8.0, right: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  sight.type,
+                  style: Theme.of(context)
+                      .textTheme
+                      .small14Bold
+                      .copyWith(color: AppColors.white),
+                ),
+                if (type == CardType.normal)
+                  IconButtonCard(
+                    assetIconPath: AppAssets.favorite,
+                    onPressed: () {
+                      debugPrint('Press favorite');
+                    },
+                  ),
+                if (type == CardType.wantVisit ||
+                    type == CardType.wantVisitPlaning)
+                  Row(
+                    children: [
+                      IconButtonCard(
+                        assetIconPath: AppAssets.calendar,
+                        onPressed: () {
+                          debugPrint('Press calendar');
+                        },
+                      ),
+                      IconButtonCard(
+                        assetIconPath: AppAssets.close,
+                        onPressed: () {
+                          debugPrint('Press clouse');
+                        },
+                      ),
+                    ],
+                  ),
+                if (type == CardType.visited)
+                  Row(
+                    children: [
+                      IconButtonCard(
+                        assetIconPath: AppAssets.share,
+                        onPressed: () {
+                          debugPrint('Press share');
+                        },
+                      ),
+                      IconButtonCard(
+                        assetIconPath: AppAssets.close,
+                        onPressed: () {
+                          debugPrint('Press clouse');
+                        },
+                      ),
+                    ],
+                  ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -170,63 +240,63 @@ class _ImageCardWidget extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0, top: 8.0, right: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  sight.type,
-                  style: Theme.of(context)
-                      .textTheme
-                      .small14Bold
-                      .copyWith(color: AppColors.white),
-                ),
-                if (type == CardType.normal)
-                  IconButtonCard(
-                    assetIconPath: AppAssets.favorite,
-                    onPressed: () {
-                      debugPrint('Press favorite');
-                    },
-                  ),
-                if (type == CardType.wantVisit ||
-                    type == CardType.wantVisitPlaning)
-                  Row(
-                    children: [
-                      IconButtonCard(
-                        assetIconPath: AppAssets.calendar,
-                        onPressed: () {
-                          debugPrint('Press calendar');
-                        },
-                      ),
-                      IconButtonCard(
-                        assetIconPath: AppAssets.close,
-                        onPressed: () {
-                          debugPrint('Press clouse');
-                        },
-                      ),
-                    ],
-                  ),
-                if (type == CardType.visited)
-                  Row(
-                    children: [
-                      IconButtonCard(
-                        assetIconPath: AppAssets.share,
-                        onPressed: () {
-                          debugPrint('Press share');
-                        },
-                      ),
-                      IconButtonCard(
-                        assetIconPath: AppAssets.close,
-                        onPressed: () {
-                          debugPrint('Press clouse');
-                        },
-                      ),
-                    ],
-                  ),
-              ],
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(left: 16.0, top: 8.0, right: 8.0),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //       Text(
+          //         sight.type,
+          //         style: Theme.of(context)
+          //             .textTheme
+          //             .small14Bold
+          //             .copyWith(color: AppColors.white),
+          //       ),
+          //       if (type == CardType.normal)
+          //         IconButtonCard(
+          //           assetIconPath: AppAssets.favorite,
+          //           onPressed: () {
+          //             debugPrint('Press favorite');
+          //           },
+          //         ),
+          //       if (type == CardType.wantVisit ||
+          //           type == CardType.wantVisitPlaning)
+          //         Row(
+          //           children: [
+          //             IconButtonCard(
+          //               assetIconPath: AppAssets.calendar,
+          //               onPressed: () {
+          //                 debugPrint('Press calendar');
+          //               },
+          //             ),
+          //             IconButtonCard(
+          //               assetIconPath: AppAssets.close,
+          //               onPressed: () {
+          //                 debugPrint('Press clouse');
+          //               },
+          //             ),
+          //           ],
+          //         ),
+          //       if (type == CardType.visited)
+          //         Row(
+          //           children: [
+          //             IconButtonCard(
+          //               assetIconPath: AppAssets.share,
+          //               onPressed: () {
+          //                 debugPrint('Press share');
+          //               },
+          //             ),
+          //             IconButtonCard(
+          //               assetIconPath: AppAssets.close,
+          //               onPressed: () {
+          //                 debugPrint('Press clouse');
+          //               },
+          //             ),
+          //           ],
+          //         ),
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );
