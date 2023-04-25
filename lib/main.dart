@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:places/assets/themes.dart';
 import 'package:places/controller/bottom_navigation_bar_controller.dart';
+import 'package:places/controller/filter_controller.dart';
 import 'package:places/controller/theme_controller.dart';
-import 'package:places/ui/screen/application_screen/application_screen.dart';
+import 'package:places/ui/screens/application_screen/application_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -13,6 +14,9 @@ void main() {
       ),
       ChangeNotifierProvider(
         create: (context) => BottomNavigationBarController(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => FilterController(),
       ),
     ],
     child: const MyApp(),

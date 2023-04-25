@@ -16,6 +16,9 @@ class AppTheme {
       backgroundColor: AppColors.white,
       elevation: 0.0,
       centerTitle: true,
+      iconTheme: const IconThemeData(
+        color: AppColors.ligthMain,
+      ),
       titleTextStyle:
           AppTypography.subtitle18Medium.copyWith(color: AppColors.ligthMain),
     ),
@@ -102,6 +105,9 @@ class AppTheme {
       backgroundColor: AppColors.darkMain,
       elevation: 0.0,
       centerTitle: true,
+      iconTheme: const IconThemeData(
+        color: AppColors.white,
+      ),
       titleTextStyle:
           AppTypography.subtitle18Medium.copyWith(color: AppColors.white),
     ),
@@ -188,7 +194,7 @@ extension CustomTextTheme on TextTheme {
   TextStyle get text16Regular => AppTypography.text16Regular;
   TextStyle get small14Bold => AppTypography.small14Bold;
   TextStyle get small14Regular => AppTypography.small14Regular;
-  TextStyle get superSmall14Regular => AppTypography.superSmall12Regular;
+  TextStyle get superSmall12Regular => AppTypography.superSmall12Regular;
   TextStyle get button14Bold => AppTypography.button14Bold;
 }
 

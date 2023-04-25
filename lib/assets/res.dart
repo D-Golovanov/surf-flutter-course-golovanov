@@ -25,4 +25,5 @@ class AppAssets {
   static const categoryParticular = 'res/images/icons/particular_place.svg';
 
   static const info = 'res/images/icons/info.svg';
+  static const filter = 'res/images/icons/filter.svg';
 }

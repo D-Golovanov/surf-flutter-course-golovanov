@@ -4,15 +4,21 @@ import 'package:places/assets/colors.dart';
 import 'package:places/assets/res.dart';
 import 'package:places/assets/themes.dart';
 import 'package:places/domain/sight.dart';
-import 'package:places/ui/screen/sight_details_screen.dart';
+import 'package:places/ui/screens/sight_details_screen.dart';
 
 enum CardType { normal, wantVisit, wantVisitPlaning, visited }
 
 class SightCard extends StatelessWidget {
   final CardType type;
   final Sight sight;
+  final List<Widget> childrenAction;
 
-  const SightCard({super.key, required this.sight, required this.type});
+  const SightCard({
+    super.key,
+    required this.sight,
+    required this.type,
+    required this.childrenAction,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -66,48 +72,14 @@ class SightCard extends StatelessWidget {
                       .small14Bold
                       .copyWith(color: AppColors.white),
                 ),
-                if (type == CardType.normal)
-                  IconButtonCard(
-                    assetIconPath: AppAssets.favorite,
-                    onPressed: () {
-                      debugPrint('Press favorite');
-                    },
-                  ),
-                if (type == CardType.wantVisit ||
-                    type == CardType.wantVisitPlaning)
-                  Row(
-                    children: [
-                      IconButtonCard(
-                        assetIconPath: AppAssets.calendar,
-                        onPressed: () {
-                          debugPrint('Press calendar');
-                        },
-                      ),
-                      IconButtonCard(
-                        assetIconPath: AppAssets.close,
-                        onPressed: () {
-                          debugPrint('Press clouse');
-                        },
-                      ),
-                    ],
-                  ),
-                if (type == CardType.visited)
-                  Row(
-                    children: [
-                      IconButtonCard(
-                        assetIconPath: AppAssets.share,
-                        onPressed: () {
-                          debugPrint('Press share');
-                        },
-                      ),
-                      IconButtonCard(
-                        assetIconPath: AppAssets.close,
-                        onPressed: () {
-                          debugPrint('Press clouse');
-                        },
-                      ),
-                    ],
-                  ),
+                Row(
+                  children: [
+                    ...List.generate(
+                      childrenAction.length,
+                      (index) => childrenAction[index],
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
@@ -125,9 +97,11 @@ class _TextCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Container(
       width: double.infinity,
-      color: Theme.of(context).colorScheme.customBackground,
+      color: theme.colorScheme.customBackground,
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -135,10 +109,8 @@ class _TextCardWidget extends StatelessWidget {
           const SizedBox(height: 16.0),
           Text(
             sight.name,
-            style: Theme.of(context)
-                .textTheme
-                .text16Medium
-                .copyWith(color: Theme.of(context).colorScheme.textColor),
+            style: theme.textTheme.text16Medium
+                .copyWith(color: theme.colorScheme.textColor),
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
           ),
@@ -148,10 +120,8 @@ class _TextCardWidget extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 12.0),
               child: Text(
                 'Запланировано на 12 окт. 2020',
-                style: Theme.of(context)
-                    .textTheme
-                    .small14Regular
-                    .copyWith(color: Theme.of(context).colorScheme.green),
+                style: theme.textTheme.small14Regular
+                    .copyWith(color: theme.colorScheme.green),
               ),
             ),
           if (type == CardType.visited)
@@ -159,18 +129,14 @@ class _TextCardWidget extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 12.0),
               child: Text(
                 'Цель достигнута 12 окт. 2020',
-                style: Theme.of(context)
-                    .textTheme
-                    .small14Regular
-                    .copyWith(color: Theme.of(context).colorScheme.secondary2),
+                style: theme.textTheme.small14Regular
+                    .copyWith(color: theme.colorScheme.secondary2),
               ),
             ),
           Text(
             'закрыто до 10:00',
-            style: Theme.of(context)
-                .textTheme
-                .small14Regular
-                .copyWith(color: Theme.of(context).colorScheme.secondary2),
+            style: theme.textTheme.small14Regular
+                .copyWith(color: theme.colorScheme.secondary2),
           ),
           const SizedBox(height: 16.0),
         ],
@@ -187,6 +153,8 @@ class _ImageCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Expanded(
       child: Stack(
         children: [
@@ -205,15 +173,14 @@ class _ImageCardWidget extends StatelessWidget {
                     child: SvgPicture.asset(
                       AppAssets.photo,
                       width: 64.0,
-                      color: Theme.of(context).colorScheme.customBackground,
+                      color: theme.colorScheme.customBackground,
                     ),
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: LinearProgressIndicator(
-                      color: Theme.of(context).colorScheme.green,
-                      backgroundColor:
-                          Theme.of(context).colorScheme.customBackground,
+                      color: theme.colorScheme.green,
+                      backgroundColor: theme.colorScheme.customBackground,
                       value: loadingProgress.expectedTotalBytes != null
                           ? loadingProgress.cumulativeBytesLoaded /
                               loadingProgress.expectedTotalBytes!
@@ -240,85 +207,8 @@ class _ImageCardWidget extends StatelessWidget {
               ),
             ),
           ),
-          // Padding(
-          //   padding: const EdgeInsets.only(left: 16.0, top: 8.0, right: 8.0),
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: [
-          //       Text(
-          //         sight.type,
-          //         style: Theme.of(context)
-          //             .textTheme
-          //             .small14Bold
-          //             .copyWith(color: AppColors.white),
-          //       ),
-          //       if (type == CardType.normal)
-          //         IconButtonCard(
-          //           assetIconPath: AppAssets.favorite,
-          //           onPressed: () {
-          //             debugPrint('Press favorite');
-          //           },
-          //         ),
-          //       if (type == CardType.wantVisit ||
-          //           type == CardType.wantVisitPlaning)
-          //         Row(
-          //           children: [
-          //             IconButtonCard(
-          //               assetIconPath: AppAssets.calendar,
-          //               onPressed: () {
-          //                 debugPrint('Press calendar');
-          //               },
-          //             ),
-          //             IconButtonCard(
-          //               assetIconPath: AppAssets.close,
-          //               onPressed: () {
-          //                 debugPrint('Press clouse');
-          //               },
-          //             ),
-          //           ],
-          //         ),
-          //       if (type == CardType.visited)
-          //         Row(
-          //           children: [
-          //             IconButtonCard(
-          //               assetIconPath: AppAssets.share,
-          //               onPressed: () {
-          //                 debugPrint('Press share');
-          //               },
-          //             ),
-          //             IconButtonCard(
-          //               assetIconPath: AppAssets.close,
-          //               onPressed: () {
-          //                 debugPrint('Press clouse');
-          //               },
-          //             ),
-          //           ],
-          //         ),
-          //     ],
-          //   ),
-          // ),
         ],
       ),
-    );
-  }
-}
-
-class IconButtonCard extends StatelessWidget {
-  final String assetIconPath;
-  final VoidCallback onPressed;
-
-  const IconButtonCard({
-    super.key,
-    required this.assetIconPath,
-    required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      constraints: const BoxConstraints(),
-      onPressed: onPressed,
-      icon: SvgPicture.asset(assetIconPath),
     );
   }
 }

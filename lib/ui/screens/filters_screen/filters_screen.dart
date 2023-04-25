@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/assets/res.dart';
 import 'package:places/assets/strings.dart';
 import 'package:places/assets/text_style.dart';
 import 'package:places/assets/themes.dart';
+import 'package:places/controller/filter_controller.dart';
 import 'package:places/domain/sight.dart';
 import 'package:places/mocks.dart';
-import 'package:places/ui/widgets/bottom_bar.dart';
+import 'package:places/ui/screens/filters_screen/filters_widgets.dart';
 import 'package:places/ui/widgets/center_app_bar.dart';
 import 'package:places/util/area_included_place.dart';
+import 'package:provider/provider.dart';
 
 class FiltersScreen extends StatefulWidget {
   const FiltersScreen({super.key});
@@ -24,7 +25,9 @@ class _FiltersScreenState extends State<FiltersScreen> {
   String categoryPark = '';
   String categoryMuseum = '';
   String categoryCafe = '';
+
   RangeValues range = const RangeValues(100.0, 10000.0);
+  // RangeValues range = const RangeValues(100.0, 10000.0);
 
   List<String> myPosition = ['45.078474', '38.895659'];
 
@@ -38,6 +41,8 @@ class _FiltersScreenState extends State<FiltersScreen> {
 
   @override
   void initState() {
+    range = RangeValues(context.watch<FilterController>().rangeStart,
+        context.watch<FilterController>().rangeEnd);
     super.initState();
     _convertDimension();
     _findPlaceFilter(mocks);
@@ -140,6 +145,182 @@ class _FiltersScreenState extends State<FiltersScreen> {
     range = const RangeValues(100.0, 10000.0);
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<FilterController>(
+      builder: (context, state, child) => Scaffold(
+        appBar: CenterAppBar(
+          title: '',
+          actionWidget: TextButton(
+            style: Theme.of(context).greenTextButtonTheme,
+            onPressed: () {
+              setState(() {
+                _clearFilter();
+                _convertDimension();
+                _findPlaceFilter(mocks);
+              });
+            },
+            child: const Text(AppStrings.clearAppBar),
+          ),
+        ),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 24.0),
+              Text(
+                AppStrings.category.toUpperCase(),
+                style: AppTypography.superSmall12Regular.copyWith(
+                  color: Theme.of(context).colorScheme.secondary2Opacity,
+                ),
+              ),
+              const SizedBox(height: 24.0),
+              SizedBox(
+                height: 230.0,
+                child: GridView(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                  ),
+                  children: [
+                    CategoryFilterButton(
+                      choice: categoryHotel,
+                      titleCategort: AppStrings.hotel,
+                      assetIconPath: AppAssets.categoryHotel,
+                      onPressed: () {
+                        setState(() {
+                          categoryHotel.isEmpty
+                              ? categoryHotel = AppStrings.hotel
+                              : categoryHotel = '';
+                          _findPlaceFilter(mocks);
+                        });
+                      },
+                    ),
+                    CategoryFilterButton(
+                      choice: categoryRestourant,
+                      titleCategort: AppStrings.restourant,
+                      assetIconPath: AppAssets.categoryRestourant,
+                      onPressed: () {
+                        setState(() {
+                          categoryRestourant.isEmpty
+                              ? categoryRestourant = AppStrings.restourant
+                              : categoryRestourant = '';
+                          _findPlaceFilter(mocks);
+                        });
+                      },
+                    ),
+                    CategoryFilterButton(
+                      choice: categoryParticular,
+                      titleCategort: AppStrings.particularPlace,
+                      assetIconPath: AppAssets.categoryParticular,
+                      onPressed: () {
+                        setState(() {
+                          categoryParticular.isEmpty
+                              ? categoryParticular = AppStrings.particularPlace
+                              : categoryParticular = '';
+                          _findPlaceFilter(mocks);
+                        });
+                      },
+                    ),
+                    CategoryFilterButton(
+                      choice: categoryPark,
+                      titleCategort: AppStrings.park,
+                      assetIconPath: AppAssets.categoryPark,
+                      onPressed: () {
+                        setState(() {
+                          categoryPark.isEmpty
+                              ? categoryPark = AppStrings.park
+                              : categoryPark = '';
+                          _findPlaceFilter(mocks);
+                        });
+                      },
+                    ),
+                    CategoryFilterButton(
+                      choice: categoryMuseum,
+                      titleCategort: AppStrings.museum,
+                      assetIconPath: AppAssets.categoryMuseum,
+                      onPressed: () {
+                        setState(() {
+                          categoryMuseum.isEmpty
+                              ? categoryMuseum = AppStrings.museum
+                              : categoryMuseum = '';
+                          _findPlaceFilter(mocks);
+                        });
+                      },
+                    ),
+                    CategoryFilterButton(
+                      choice: categoryCafe,
+                      titleCategort: AppStrings.cafe,
+                      assetIconPath: AppAssets.categoryCafe,
+                      onPressed: () {
+                        setState(() {
+                          categoryCafe.isEmpty
+                              ? categoryCafe = AppStrings.cafe
+                              : categoryCafe = '';
+                          _findPlaceFilter(mocks);
+                        });
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 56.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    AppStrings.distances,
+                    style: Theme.of(context).textTheme.text16Regular,
+                  ),
+                  Text(
+                    _buildDimensionString(),
+                    style: Theme.of(context).textTheme.text16Regular.copyWith(
+                          color: Theme.of(context).colorScheme.secondary2,
+                        ),
+                  ),
+                ],
+              ),
+              RangeSlider(
+                values: range,
+                min: 100.0,
+                max: 10000.0,
+                divisions: 99,
+                onChanged: (newValue) {
+                  // newValue = RangeValues(
+                  //   newValue.start.round().toDouble(),
+                  //   newValue.end.round().toDouble(),
+                  // );
+                  // setState(() {
+                  //   range = newValue;
+                  // });
+                  // _convertDimension();
+                },
+                onChangeEnd: (newValue) {
+                  setState(() {
+                    _findPlaceFilter(mocks);
+                  });
+                },
+              ),
+              const Spacer(),
+              ElevatedButton(
+                onPressed: filtredSights.isEmpty
+                    ? null
+                    : () {
+                        debugPrint('press show');
+                      },
+                child: Text(
+                  '${AppStrings.showButton.toUpperCase()} (${filtredSights.length})',
+                ),
+              ),
+              const SizedBox(height: 8.0),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  /*
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -310,64 +491,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: const BottomBar(),
     );
   }
-}
-
-class CategoryFilterButton extends StatelessWidget {
-  final String choice;
-  final String titleCategort;
-  final String assetIconPath;
-  final VoidCallback onPressed;
-
-  const CategoryFilterButton({
-    super.key,
-    required this.assetIconPath,
-    required this.titleCategort,
-    required this.choice,
-    required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Stack(children: [
-          Container(
-            width: 64.0,
-            height: 64.0,
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.green.withOpacity(0.16),
-              borderRadius: BorderRadius.circular(32.0),
-            ),
-            child: IconButton(
-              onPressed: onPressed,
-              icon: SvgPicture.asset(
-                assetIconPath,
-                color: Theme.of(context).colorScheme.green,
-              ),
-            ),
-          ),
-          if (choice.isNotEmpty)
-            Positioned(
-              right: 0.0,
-              bottom: 0.0,
-              child: IgnorePointer(
-                child: SvgPicture.asset(
-                  Theme.of(context).brightness == Brightness.light
-                      ? AppAssets.filterCheckLight
-                      : AppAssets.filterCheckDark,
-                ),
-              ),
-            ),
-        ]),
-        const SizedBox(height: 12.0),
-        Text(
-          titleCategort,
-          style: AppTypography.superSmall12Regular,
-        ),
-      ],
-    );
-  }
+*/
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/assets/res.dart';
 import 'package:places/controller/bottom_navigation_bar_controller.dart';
-import 'package:places/ui/screen/application_screen/application_widgets.dart';
+import 'package:places/ui/screens/application_screen/application_widgets.dart';
 import 'package:provider/provider.dart';
 
 class ApplicationScreen extends StatelessWidget {
