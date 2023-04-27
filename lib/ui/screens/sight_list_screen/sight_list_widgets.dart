@@ -3,12 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/assets/res.dart';
 import 'package:places/assets/strings.dart';
 import 'package:places/assets/themes.dart';
-import 'package:places/controller/filter_controller.dart';
 import 'package:places/mocks.dart';
 import 'package:places/ui/screens/filters_screen/filters_screen.dart';
 import 'package:places/ui/widgets/icon_button_card.dart';
 import 'package:places/ui/widgets/sight_card.dart';
-import 'package:provider/provider.dart';
 
 class BigAppBar extends StatelessWidget implements PreferredSizeWidget {
   const BigAppBar({super.key});

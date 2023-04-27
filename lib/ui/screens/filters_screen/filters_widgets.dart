@@ -4,7 +4,7 @@ import 'package:places/assets/res.dart';
 import 'package:places/assets/themes.dart';
 
 class CategoryFilterButton extends StatelessWidget {
-  final String choice;
+  final bool choice;
   final String titleCategort;
   final String assetIconPath;
   final VoidCallback onPressed;
@@ -39,7 +39,7 @@ class CategoryFilterButton extends StatelessWidget {
               ),
             ),
           ),
-          if (choice.isNotEmpty)
+          if (choice)
             Positioned(
               right: 0.0,
               bottom: 0.0,

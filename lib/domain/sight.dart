@@ -14,4 +14,9 @@ class Sight {
     required this.details,
     required this.type,
   });
+
+  @override
+  String toString() {
+    return name;
+  }
 }
