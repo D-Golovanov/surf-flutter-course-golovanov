@@ -3,14 +3,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/assets/colors.dart';
 import 'package:places/assets/res.dart';
 import 'package:places/assets/strings.dart';
-import 'package:places/assets/text_style.dart';
 import 'package:places/assets/themes.dart';
 import 'package:places/domain/sight.dart';
 import 'package:places/ui/widgets/bottom_bar.dart';
 
-class SightDetails extends StatelessWidget {
+class SightDetailsScreen extends StatelessWidget {
   final Sight sight;
-  const SightDetails({super.key, required this.sight});
+  const SightDetailsScreen({super.key, required this.sight});
 
   @override
   Widget build(BuildContext context) {
@@ -120,77 +119,43 @@ class SightDetails extends StatelessWidget {
                         ),
                   ),
                   const SizedBox(height: 24.0),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.green,
-                      borderRadius: BorderRadius.circular(12.0),
-                    ),
-                    height: 48.0,
-                    width: double.infinity,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SvgPicture.asset(AppAssets.track),
-                        const SizedBox(width: 8.0),
-                        Text(
-                          AppStrings.buttonCreateTrack.toUpperCase(),
-                          style: AppTypography.button14Bold,
-                        ),
-                      ],
-                    ),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      debugPrint('Press build truk');
+                    },
+                    icon: SvgPicture.asset(AppAssets.track),
+                    label: Text(AppStrings.buttonCreateTrack.toUpperCase()),
                   ),
                   const SizedBox(height: 24.0),
-                  Divider(
+                  const Divider(
                     height: 0.8,
-                    color: AppColors.secondary2.withOpacity(0.56),
+                    color: AppColors.secondary2Opacity,
                   ),
                   const SizedBox(height: 8.0),
                   Row(
                     children: [
                       Expanded(
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset(
-                                AppAssets.calendar,
-                                color: AppColors.secondary2.withOpacity(0.56),
-                                height: 24.0,
-                                width: 24.0,
-                              ),
-                              const SizedBox(width: 8.0),
-                              Text(
-                                AppStrings.plan,
-                                style: AppTypography.small14Regular.copyWith(
-                                  color: AppColors.secondary2.withOpacity(0.56),
-                                ),
-                              ),
-                            ],
+                        child: TextButton.icon(
+                          onPressed: () {
+                            debugPrint('Press build calendar');
+                          },
+                          icon: SvgPicture.asset(
+                            AppAssets.calendar,
+                            color: Theme.of(context).colorScheme.secondary,
                           ),
+                          label: const Text(AppStrings.plan),
                         ),
                       ),
                       Expanded(
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset(
-                                AppAssets.favorite,
-                                color: AppColors.secondary,
-                                height: 24.0,
-                                width: 24.0,
-                              ),
-                              const SizedBox(width: 8.0),
-                              Text(
-                                AppStrings.addFavorite,
-                                style: AppTypography.small14Regular.copyWith(
-                                  color: AppColors.secondary,
-                                ),
-                              ),
-                            ],
+                        child: TextButton.icon(
+                          onPressed: () {
+                            debugPrint('Press build add favorite');
+                          },
+                          icon: SvgPicture.asset(
+                            AppAssets.favorite,
+                            color: Theme.of(context).colorScheme.secondary,
                           ),
+                          label: const Text(AppStrings.addFavorite),
                         ),
                       ),
                     ],
@@ -202,7 +167,7 @@ class SightDetails extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: const BottomBar(),
+      // bottomNavigationBar: const BottomBar(),
     );
   }
 }

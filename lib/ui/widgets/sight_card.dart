@@ -2,49 +2,89 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/assets/colors.dart';
 import 'package:places/assets/res.dart';
-import 'package:places/assets/text_style.dart';
 import 'package:places/assets/themes.dart';
 import 'package:places/domain/sight.dart';
-import 'package:places/main.dart';
-import 'package:places/ui/screen/sight_details.dart';
+import 'package:places/ui/screens/sight_details_screen.dart';
 
 enum CardType { normal, wantVisit, wantVisitPlaning, visited }
 
 class SightCard extends StatelessWidget {
   final CardType type;
   final Sight sight;
+  final List<Widget> childrenAction;
 
-  const SightCard({super.key, required this.sight, required this.type});
+  const SightCard({
+    super.key,
+    required this.sight,
+    required this.type,
+    required this.childrenAction,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push<MaterialPageRoute>(
-          context,
-          MaterialPageRoute(
-            builder: (context) => SightDetails(sight: sight),
-          ),
-        );
-      },
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12.0),
-        child: AspectRatio(
-          aspectRatio: 3 / 2,
-          child: Column(
-            children: [
-              _ImageCardWidget(
-                sight: sight,
-                type: type,
-              ),
-              _TextCardWidget(
-                sight: sight,
-                type: type,
-              ),
-            ],
+    return Stack(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(12.0),
+          child: AspectRatio(
+            aspectRatio: 3 / 2,
+            child: Column(
+              children: [
+                _ImageCardWidget(
+                  sight: sight,
+                  type: type,
+                ),
+                _TextCardWidget(
+                  sight: sight,
+                  type: type,
+                ),
+              ],
+            ),
           ),
         ),
-      ),
+        Positioned.fill(
+          child: Material(
+            type: MaterialType.transparency,
+            child: InkWell(
+              onTap: () {
+                Navigator.push<MaterialPageRoute>(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SightDetailsScreen(sight: sight),
+                  ),
+                );
+              },
+              highlightColor: Colors.transparent,
+              borderRadius: BorderRadius.circular(12.0),
+            ),
+          ),
+        ),
+        Positioned(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16.0, top: 8.0, right: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  sight.type,
+                  style: Theme.of(context)
+                      .textTheme
+                      .small14Bold
+                      .copyWith(color: AppColors.white),
+                ),
+                Row(
+                  children: [
+                    ...List.generate(
+                      childrenAction.length,
+                      (index) => childrenAction[index],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -57,9 +97,11 @@ class _TextCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Container(
       width: double.infinity,
-      color: Theme.of(context).colorScheme.customBackground,
+      color: theme.colorScheme.customBackground,
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,10 +109,8 @@ class _TextCardWidget extends StatelessWidget {
           const SizedBox(height: 16.0),
           Text(
             sight.name,
-            style: Theme.of(context)
-                .textTheme
-                .text16Medium
-                .copyWith(color: Theme.of(context).colorScheme.textColor),
+            style: theme.textTheme.text16Medium
+                .copyWith(color: theme.colorScheme.textColor),
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
           ),
@@ -80,10 +120,8 @@ class _TextCardWidget extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 12.0),
               child: Text(
                 'Запланировано на 12 окт. 2020',
-                style: Theme.of(context)
-                    .textTheme
-                    .small14Regular
-                    .copyWith(color: Theme.of(context).colorScheme.green),
+                style: theme.textTheme.small14Regular
+                    .copyWith(color: theme.colorScheme.green),
               ),
             ),
           if (type == CardType.visited)
@@ -91,18 +129,14 @@ class _TextCardWidget extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 12.0),
               child: Text(
                 'Цель достигнута 12 окт. 2020',
-                style: Theme.of(context)
-                    .textTheme
-                    .small14Regular
-                    .copyWith(color: Theme.of(context).colorScheme.secondary2),
+                style: theme.textTheme.small14Regular
+                    .copyWith(color: theme.colorScheme.secondary2),
               ),
             ),
           Text(
             'закрыто до 10:00',
-            style: Theme.of(context)
-                .textTheme
-                .small14Regular
-                .copyWith(color: Theme.of(context).colorScheme.secondary2),
+            style: theme.textTheme.small14Regular
+                .copyWith(color: theme.colorScheme.secondary2),
           ),
           const SizedBox(height: 16.0),
         ],
@@ -119,6 +153,8 @@ class _ImageCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Expanded(
       child: Stack(
         children: [
@@ -137,15 +173,14 @@ class _ImageCardWidget extends StatelessWidget {
                     child: SvgPicture.asset(
                       AppAssets.photo,
                       width: 64.0,
-                      color: Theme.of(context).colorScheme.customBackground,
+                      color: theme.colorScheme.customBackground,
                     ),
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: LinearProgressIndicator(
-                      color: Theme.of(context).colorScheme.green,
-                      backgroundColor:
-                          Theme.of(context).colorScheme.customBackground,
+                      color: theme.colorScheme.green,
+                      backgroundColor: theme.colorScheme.customBackground,
                       value: loadingProgress.expectedTotalBytes != null
                           ? loadingProgress.cumulativeBytesLoaded /
                               loadingProgress.expectedTotalBytes!
@@ -170,68 +205,6 @@ class _ImageCardWidget extends StatelessWidget {
                   end: Alignment.bottomCenter,
                 ),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0, top: 8.0, right: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  sight.type,
-                  style: Theme.of(context)
-                      .textTheme
-                      .small14Bold
-                      .copyWith(color: AppColors.white),
-                ),
-                if (type == CardType.normal)
-                  IconButton(
-                    constraints: const BoxConstraints(),
-                    onPressed: () {},
-                    icon: SvgPicture.asset(
-                      AppAssets.favorite,
-                    ),
-                  ),
-                if (type == CardType.wantVisit ||
-                    type == CardType.wantVisitPlaning)
-                  Row(
-                    children: [
-                      IconButton(
-                        constraints: const BoxConstraints(),
-                        onPressed: () {},
-                        icon: SvgPicture.asset(
-                          AppAssets.calendar,
-                        ),
-                      ),
-                      IconButton(
-                        constraints: const BoxConstraints(),
-                        onPressed: () {},
-                        icon: SvgPicture.asset(
-                          AppAssets.close,
-                        ),
-                      ),
-                    ],
-                  ),
-                if (type == CardType.visited)
-                  Row(
-                    children: [
-                      IconButton(
-                        constraints: const BoxConstraints(),
-                        onPressed: () {},
-                        icon: SvgPicture.asset(
-                          AppAssets.share,
-                        ),
-                      ),
-                      IconButton(
-                        constraints: const BoxConstraints(),
-                        onPressed: () {},
-                        icon: SvgPicture.asset(
-                          AppAssets.close,
-                        ),
-                      ),
-                    ],
-                  ),
-              ],
             ),
           ),
         ],

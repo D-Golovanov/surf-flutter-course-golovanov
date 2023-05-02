@@ -16,6 +16,9 @@ class AppTheme {
       backgroundColor: AppColors.white,
       elevation: 0.0,
       centerTitle: true,
+      iconTheme: const IconThemeData(
+        color: AppColors.ligthMain,
+      ),
       titleTextStyle:
           AppTypography.subtitle18Medium.copyWith(color: AppColors.ligthMain),
     ),
@@ -33,6 +36,40 @@ class AppTheme {
       showSelectedLabels: false,
       showUnselectedLabels: false,
       backgroundColor: AppColors.white,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.ligthGreen,
+        foregroundColor: AppColors.white,
+        minimumSize: const Size.fromHeight(48.0),
+        elevation: 0.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        textStyle: AppTypography.button14Bold,
+        disabledBackgroundColor: AppColors.ligthBackgroung,
+        disabledForegroundColor: AppColors.secondary2Opacity,
+      ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        backgroundColor: AppColors.white,
+        foregroundColor: AppColors.secondary,
+        maximumSize: const Size(double.infinity, 40.0),
+        elevation: 0.0,
+        textStyle: AppTypography.small14Regular,
+      ),
+    ),
+    sliderTheme: SliderThemeData(
+      thumbColor: AppColors.white,
+      activeTrackColor: AppColors.ligthGreen,
+      inactiveTrackColor: AppColors.secondary2Opacity,
+      trackHeight: 2.0,
+      rangeThumbShape: const RoundRangeSliderThumbShape(
+        elevation: 4.0,
+        pressedElevation: 4.0,
+      ),
+      overlayColor: AppColors.ligthGreen.withOpacity(0.12),
     ),
     /*
         textTheme: TextTheme(
@@ -68,6 +105,9 @@ class AppTheme {
       backgroundColor: AppColors.darkMain,
       elevation: 0.0,
       centerTitle: true,
+      iconTheme: const IconThemeData(
+        color: AppColors.white,
+      ),
       titleTextStyle:
           AppTypography.subtitle18Medium.copyWith(color: AppColors.white),
     ),
@@ -85,6 +125,40 @@ class AppTheme {
       showSelectedLabels: false,
       showUnselectedLabels: false,
       backgroundColor: AppColors.darkMain,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.darkGreen,
+        foregroundColor: AppColors.white,
+        minimumSize: const Size.fromHeight(48.0),
+        elevation: 0.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        textStyle: AppTypography.button14Bold,
+        disabledBackgroundColor: AppColors.darkBlack,
+        disabledForegroundColor: AppColors.secondary2Opacity,
+      ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        backgroundColor: AppColors.darkMain,
+        foregroundColor: AppColors.white,
+        maximumSize: const Size(double.infinity, 40.0),
+        elevation: 0.0,
+        textStyle: AppTypography.small14Regular,
+      ),
+    ),
+    sliderTheme: SliderThemeData(
+      thumbColor: AppColors.white,
+      activeTrackColor: AppColors.darkGreen,
+      inactiveTrackColor: AppColors.secondary2Opacity,
+      trackHeight: 2.0,
+      rangeThumbShape: const RoundRangeSliderThumbShape(
+        elevation: 4.0,
+        pressedElevation: 4.0,
+      ),
+      overlayColor: AppColors.darkGreen.withOpacity(0.12),
     ),
   );
 }
@@ -117,8 +191,25 @@ extension CustomTextTheme on TextTheme {
   TextStyle get title24Bold => AppTypography.title24Bold;
   TextStyle get subtitle18Medium => AppTypography.subtitle18Medium;
   TextStyle get text16Medium => AppTypography.text16Medium;
+  TextStyle get text16Regular => AppTypography.text16Regular;
   TextStyle get small14Bold => AppTypography.small14Bold;
   TextStyle get small14Regular => AppTypography.small14Regular;
-  TextStyle get superSmall14Regular => AppTypography.superSmall14Regular;
+  TextStyle get superSmall12Regular => AppTypography.superSmall12Regular;
   TextStyle get button14Bold => AppTypography.button14Bold;
+}
+
+extension ActionTextButtonAppBar on ThemeData {
+  ButtonStyle get greenTextButtonTheme => brightness == Brightness.light
+      ? TextButton.styleFrom(
+          backgroundColor: AppColors.white,
+          foregroundColor: AppColors.ligthGreen,
+          elevation: 0.0,
+          textStyle: AppTypography.text16Medium,
+        )
+      : TextButton.styleFrom(
+          backgroundColor: AppColors.darkMain,
+          foregroundColor: AppColors.darkGreen,
+          elevation: 0.0,
+          textStyle: AppTypography.text16Medium,
+        );
 }

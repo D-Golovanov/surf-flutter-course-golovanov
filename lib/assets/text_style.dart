@@ -28,6 +28,12 @@ class AppTypography {
     height: 20.0 / 16.0,
     fontWeight: FontWeight.w500,
   );
+  static const text16Regular = TextStyle(
+    fontFamily: 'Roboto',
+    fontSize: 16.0,
+    height: 20.0 / 16.0,
+    fontWeight: FontWeight.w400,
+  );
 
   static const small14Bold = TextStyle(
     fontFamily: 'Roboto',
@@ -43,7 +49,7 @@ class AppTypography {
     fontWeight: FontWeight.w400,
   );
 
-  static const superSmall14Regular = TextStyle(
+  static const superSmall12Regular = TextStyle(
     fontFamily: 'Roboto',
     fontSize: 12.0,
     height: 16.0 / 12.0,
