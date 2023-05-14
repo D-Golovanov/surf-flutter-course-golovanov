@@ -72,3 +72,12 @@ final List<Sight> mocks = [
     type: 'Отель',
   ),
 ];
+
+final List<String> mocksCategory = [
+  'Кинотеатр',
+  'Ресторан',
+  'Особое место',
+  'Театр',
+  'Музей',
+  'Кафе',
+];

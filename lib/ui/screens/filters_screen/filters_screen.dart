@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:places/assets/res.dart';
 import 'package:places/assets/strings.dart';
-import 'package:places/assets/text_style.dart';
 import 'package:places/assets/themes.dart';
 import 'package:places/domain/sight.dart';
 import 'package:places/mocks.dart';
 import 'package:places/ui/screens/filters_screen/filters_widgets.dart';
 import 'package:places/ui/widgets/center_app_bar.dart';
+import 'package:places/ui/widgets/label_text_upper_case_widget.dart';
 import 'package:places/util/area_included_place.dart';
 
 class FiltersScreen extends StatefulWidget {
@@ -121,12 +121,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 24.0),
-            Text(
-              AppStrings.category.toUpperCase(),
-              style: AppTypography.superSmall12Regular.copyWith(
-                color: Theme.of(context).colorScheme.secondary2Opacity,
-              ),
-            ),
+            const LabelTextUpperCaseWidget(text: AppStrings.categorys),
             const SizedBox(height: 24.0),
             SizedBox(
               height: 230.0,

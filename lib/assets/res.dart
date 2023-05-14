@@ -14,6 +14,7 @@ class AppAssets {
   static const photo = 'res/images/icons/photo.svg';
   static const share = 'res/images/icons/share.svg';
   static const close = 'res/images/icons/close.svg';
+  static const clear = 'res/images/icons/clear.svg';
 
   static const filterCheckLight = 'res/images/icons/tick_choice_light.svg';
   static const filterCheckDark = 'res/images/icons/tick_choice_dark.svg';
@@ -26,4 +27,6 @@ class AppAssets {
 
   static const info = 'res/images/icons/info.svg';
   static const filter = 'res/images/icons/filter.svg';
+
+  static const check = 'res/images/icons/check.svg';
 }

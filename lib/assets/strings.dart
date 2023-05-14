@@ -1,5 +1,7 @@
 class AppStrings {
   static const appTitle = 'Список\nинтересных мест';
+  static const newPlace = 'Новое место';
+
   static const appTitleFavorites = 'Избранное';
   static const buttonCreateTrack = 'Построить маршрут';
   static const plan = 'Запланировать';
@@ -8,7 +10,7 @@ class AppStrings {
   static const tabBarVisited = 'Посетил';
 
   //filters screens
-  static const category = 'Категории';
+  static const categorys = 'Категории';
 
   static const hotel = 'Отель';
   static const restourant = 'Ресторан';
@@ -29,4 +31,17 @@ class AppStrings {
   static const titleAppBarSettings = 'Настройки';
   static const darkThtme = 'Тёмная тема';
   static const watchTutorial = 'Смотреть туториал';
+
+  //New place
+  static const appTitleNewPlace = 'Новое место';
+  static const category = 'Категория';
+  static const categoryNotChoice = 'Не выбрано';
+  static const name = 'Название';
+  static const nameHint = 'Название места';
+
+  static const latitude = 'Широта';
+  static const latitudeHint = '60.489574';
+  static const longitude = 'Долгота';
+  static const longitudeHint = '29.638451';
+  static const save = 'Сохранить';
 }
