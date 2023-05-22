@@ -111,6 +111,10 @@ class AppTheme {
       cursorColor: AppColors.ligthMain,
       selectionHandleColor: AppColors.ligthGreen,
     ),
+    progressIndicatorTheme: const ProgressIndicatorThemeData(
+      color: AppColors.secondary2Opacity,
+      circularTrackColor: AppColors.ligthBackgroung,
+    ),
   );
 
   static final darkThemeData = ThemeData(
@@ -218,6 +222,10 @@ class AppTheme {
       selectionColor: AppColors.secondary2Opacity,
       cursorColor: AppColors.white,
       selectionHandleColor: AppColors.darkGreen,
+    ),
+    progressIndicatorTheme: const ProgressIndicatorThemeData(
+      color: AppColors.secondary2Opacity,
+      circularTrackColor: AppColors.darkBlack,
     ),
   );
 }
@@ -333,6 +341,57 @@ extension TextFieldDropDown on ThemeData {
           ),
           focusedErrorBorder: UnderlineInputBorder(
             borderSide: BorderSide(color: AppColors.darkRed.withOpacity(0.4)),
+          ),
+        );
+
+  InputDecoration get decorationFilled => brightness == Brightness.light
+      ? InputDecoration(
+          filled: true,
+          fillColor: AppColors.ligthBackgroung,
+          hintStyle: AppTypography.text16Regular
+              .copyWith(color: AppColors.secondary2Opacity),
+          contentPadding: const EdgeInsets.symmetric(vertical: 14.0),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+        )
+      : InputDecoration(
+          filled: true,
+          fillColor: AppColors.darkBlack,
+          hintStyle: AppTypography.text16Regular
+              .copyWith(color: AppColors.secondary2Opacity),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16.0,
+            vertical: 10.0,
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(12.0),
           ),
         );
 }

@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:places/assets/colors.dart';
-import 'package:places/assets/strings.dart';
-import 'package:places/assets/themes.dart';
 import 'package:places/ui/screens/sight_list_screen/sight_list_widgets.dart';
 
 class SightListScreen extends StatefulWidget {
@@ -21,7 +18,9 @@ class _SightListScreenState extends State<SightListScreen> {
       floatingActionButton: const NewPlaceButtonWidget(),
       body: Column(
         children: const [
+          SizedBox(height: 14.0),
           SearchWidget(),
+          SizedBox(height: 14.0),
           ListBodyWidget(),
         ],
       ),

@@ -44,4 +44,15 @@ class AppStrings {
   static const longitude = 'Долгота';
   static const longitudeHint = '29.638451';
   static const save = 'Сохранить';
+
+  //Search
+  static const appTitleSearch = 'Список интересных мест';
+  static const search = 'Поиск';
+  static const cleanHistory = 'Очистить историю';
+  static const notFound = 'Ничего не найдено';
+  static const tryAgainSearch = 'Попробуйте изменить параметры поиска';
+
+  //Error icon info
+  static const errorTitle = 'Ошибка';
+  static const errorDescr = 'Что то пошло не так.\nПопробуйте позже';
 }

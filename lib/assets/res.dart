@@ -29,4 +29,7 @@ class AppAssets {
   static const filter = 'res/images/icons/filter.svg';
 
   static const check = 'res/images/icons/check.svg';
+  static const search = 'res/images/icons/search.svg';
+  static const delete = 'res/images/icons/delete.svg';
+  static const error = 'res/images/icons/error.svg';
 }

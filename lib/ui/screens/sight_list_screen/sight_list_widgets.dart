@@ -6,7 +6,7 @@ import 'package:places/assets/strings.dart';
 import 'package:places/assets/themes.dart';
 import 'package:places/mocks.dart';
 import 'package:places/ui/screens/add_sight_screen/add_sight_screen.dart';
-import 'package:places/ui/screens/filters_screen/filters_screen.dart';
+import 'package:places/ui/screens/sight_search_screen/sight_search_screen.dart';
 import 'package:places/ui/widgets/icon_button_card.dart';
 import 'package:places/ui/widgets/sight_card.dart';
 
@@ -48,25 +48,33 @@ class SearchWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 68.0,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: TextField(
-        decoration: InputDecoration(
-          suffixIcon: IconButton(
-            onPressed: () {
-              Navigator.push<MaterialPageRoute>(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const FiltersScreen(),
-                ),
-              );
-            },
-            icon: SvgPicture.asset(
-              AppAssets.filter,
-              color: Theme.of(context).colorScheme.green,
-            ),
+        onTap: () => Navigator.push<MaterialPageRoute>(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const SightSearchScreen(),
           ),
         ),
+        readOnly: true,
+        decoration: Theme.of(context).decorationFilled.copyWith(
+              hintText: AppStrings.search,
+              suffixIcon: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: SvgPicture.asset(
+                  AppAssets.filter,
+                  color: Theme.of(context).colorScheme.green,
+                ),
+              ),
+              prefixIcon: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: SvgPicture.asset(
+                  AppAssets.search,
+                  color: Theme.of(context).colorScheme.secondary2Opacity,
+                ),
+              ),
+            ),
       ),
     );
   }
