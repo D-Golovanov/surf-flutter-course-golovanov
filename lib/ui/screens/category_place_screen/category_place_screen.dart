@@ -35,9 +35,9 @@ class _CategoryPlaceScreenState extends State<CategoryPlaceScreen> {
           itemCount: mocksCategory.length,
           itemBuilder: (context, index) {
             return ListTile(
-              onTap: () => value.category = mocksCategory[index],
-              title: Text(mocksCategory[index]),
-              trailing: value.category == mocksCategory[index]
+              onTap: () => value.category = mocksCategory[index].title,
+              title: Text(mocksCategory[index].title),
+              trailing: value.category == mocksCategory[index].title
                   ? SvgPicture.asset(
                       AppAssets.check,
                       color: Theme.of(context).colorScheme.green,

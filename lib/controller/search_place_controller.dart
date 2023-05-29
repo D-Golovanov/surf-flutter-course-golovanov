@@ -1,12 +1,15 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:places/domain/sight.dart';
 
 enum StateScreen { history, loading, search, notFound, error }
 
 class SearchPlaceController extends ChangeNotifier {
   StateScreen _currentScreen = StateScreen.loading;
   String _textSearch = '';
+  List<Sight> _placeList = [];
+  List<Sight> _searchList = [];
   List<String> _historyList = [];
 
   TextEditingController historyTextEditingController = TextEditingController();
@@ -28,7 +31,15 @@ class SearchPlaceController extends ChangeNotifier {
     notifyListeners();
   }
 
+  List<Sight> get placeList => _placeList;
+  List<Sight> get searchList => _searchList;
+
   List<String> get historyList => _historyList;
+
+  set placeList(List<Sight> list) {
+    _placeList = list;
+    notifyListeners();
+  }
 
   //History list
   Future<void> loadHistory(List<String>? data) async {
@@ -80,17 +91,27 @@ class SearchPlaceController extends ChangeNotifier {
 
     searchDeboubce = Timer(const Duration(milliseconds: 250), () async {
       debugPrint(value);
-      if (value.isEmpty) {
+      if (value.isEmpty || value.length < 3) {
         _currentScreen = StateScreen.notFound;
       }
       if (value.isEmpty && _historyList.isNotEmpty) {
         _currentScreen = StateScreen.history;
       }
-      if (value.isNotEmpty) {
-        _currentScreen = StateScreen.search;
+      if (value.isNotEmpty && value.length >= 3) {
+        filtredPlaces(value);
+        _searchList.isEmpty
+            ? _currentScreen = StateScreen.notFound
+            : _currentScreen = StateScreen.search;
       }
       notifyListeners();
     });
+  }
+
+  void filtredPlaces(String value) {
+    _searchList = _placeList
+        .where((element) =>
+            element.name.toLowerCase().contains(value.toLowerCase()))
+        .toList();
   }
 
   void changeTextField(String value) {
@@ -98,8 +119,8 @@ class SearchPlaceController extends ChangeNotifier {
       ..text = value
       ..selection = TextSelection.collapsed(offset: value.length);
 
-    // _textSearch = value;
-    searchPlace(value);
+    _textSearch = value;
+    // searchPlace(value);
     notifyListeners();
   }
 }

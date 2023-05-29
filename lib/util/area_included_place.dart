@@ -1,19 +1,19 @@
 import 'dart:math';
 
+import 'package:places/domain/location.dart';
+
 bool areaIncludedPlace(
-  String currentPositionLat,
-  String currentPositionLon,
-  String targetPositionLat,
-  String targetPositionLon,
+  Location currentPosition,
+  Location targetPosition,
   double fromPlace,
   double toPlace,
 ) {
   const earthR = 6372795.0;
   //координаты в радианы
-  final targetLat = double.parse(targetPositionLat) * pi / 180;
-  final currentLat = double.parse(currentPositionLat) * pi / 180;
-  final targetLon = double.parse(targetPositionLon) * pi / 180;
-  final currentLon = double.parse(currentPositionLon) * pi / 180;
+  final targetLat = double.parse(targetPosition.latitude) * pi / 180;
+  final currentLat = double.parse(currentPosition.latitude) * pi / 180;
+  final targetLon = double.parse(targetPosition.longitude) * pi / 180;
+  final currentLon = double.parse(currentPosition.longitude) * pi / 180;
 
   // косинусы и синусы широт и разницы долгот
   final cosTgLat = cos(targetLat);

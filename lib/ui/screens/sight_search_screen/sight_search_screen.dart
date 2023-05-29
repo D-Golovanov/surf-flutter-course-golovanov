@@ -3,7 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/assets/res.dart';
 import 'package:places/assets/strings.dart';
 import 'package:places/assets/themes.dart';
+import 'package:places/controller/filter_controller.dart';
 import 'package:places/controller/search_place_controller.dart';
+import 'package:places/domain/sight.dart';
 import 'package:places/mocks.dart';
 import 'package:places/ui/screens/filters_screen/filters_screen.dart';
 import 'package:places/ui/screens/sight_search_screen/sight_search_widgets.dart';
@@ -20,28 +22,28 @@ class SightSearchScreen extends StatefulWidget {
 }
 
 class _SightSearchScreenState extends State<SightSearchScreen> {
-  final TextEditingController _searchController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  Widget _buildBody(SearchPlaceController state) {
-    if (state.currentScreen == StateScreen.history) {
+  Widget _buildBody(
+    SearchPlaceController modelSearch,
+    FilterController modelFilter,
+  ) {
+    if (modelSearch.currentScreen == StateScreen.history) {
       return HistoryListWidget(data: mocksHistory);
     }
-    if (state.currentScreen == StateScreen.search) {
-      return SearchListWidget(data: mocks);
+    if (modelSearch.currentScreen == StateScreen.search) {
+      modelFilter.isFiltred
+          ? modelSearch.placeList = modelFilter.filtredSights
+          : modelSearch.placeList = mocks;
+
+      return SearchListWidget(data: modelSearch.placeList);
     }
-    if (state.currentScreen == StateScreen.notFound) {
+    if (modelSearch.currentScreen == StateScreen.notFound) {
       return const IconInfo(
         iconPath: AppAssets.search,
         title: AppStrings.notFound,
         description: AppStrings.tryAgainSearch,
       );
     }
-    if (state.currentScreen == StateScreen.loading) {
+    if (modelSearch.currentScreen == StateScreen.loading) {
       return const Center(child: CircularProgressIndicator());
     }
 
@@ -57,15 +59,8 @@ class _SightSearchScreenState extends State<SightSearchScreen> {
     super.didChangeDependencies();
     debugPrint('didchange');
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Provider.of<SearchPlaceController>(context, listen: false)
-          .loadHistory(mocksHistory);
+      context.read<SearchPlaceController>().loadHistory(mocksHistory);
     });
-  }
-
-  @override
-  void dispose() {
-    _searchController.dispose();
-    super.dispose();
   }
 
   @override
@@ -85,8 +80,9 @@ class _SightSearchScreenState extends State<SightSearchScreen> {
           ],
         ),
       ),
-      body: Consumer<SearchPlaceController>(
-        builder: (context, state, child) => _buildBody(state),
+      body: Consumer2<SearchPlaceController, FilterController>(
+        builder: (context, modelSearch, modelFilter, _) =>
+            _buildBody(modelSearch, modelFilter),
       ),
       bottomNavigationBar: const BottomBar(),
     );
@@ -96,17 +92,17 @@ class _SightSearchScreenState extends State<SightSearchScreen> {
 class _SearchTextFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Consumer<SearchPlaceController>(
-      builder: (context, value, _) => TextField(
-        controller: value.historyTextEditingController,
+    return Consumer<SearchPlaceController>(builder: (context, model, _) {
+      return TextField(
+        controller: model.historyTextEditingController,
         autofocus: true,
         textInputAction: TextInputAction.search,
         onChanged: context.read<SearchPlaceController>().searchPlace,
         onEditingComplete: () {
-          if (value.historyTextEditingController.text.isNotEmpty) {
+          if (model.historyTextEditingController.text.isNotEmpty) {
             context
                 .read<SearchPlaceController>()
-                .addElementOnHistory(value.historyTextEditingController.text);
+                .addElementOnHistory(model.historyTextEditingController.text);
           }
         },
         decoration: Theme.of(context).decorationFilled.copyWith(
@@ -131,83 +127,7 @@ class _SearchTextFieldWidget extends StatelessWidget {
                 ),
               ),
             ),
-      ),
-    );
+      );
+    });
   }
 }
-
-/*
-class _SearchTextFieldWidget extends StatefulWidget {
-  final TextEditingController _searchController;
-
-  const _SearchTextFieldWidget({
-    required TextEditingController searchController,
-  }) : _searchController = searchController;
-
-  @override
-  State<_SearchTextFieldWidget> createState() => _SearchTextFieldWidgetState();
-}
-
-class _SearchTextFieldWidgetState extends State<_SearchTextFieldWidget> {
-  void changeTextField(String value) {
-    widget._searchController.text = value;
-    widget._searchController.selection =
-        TextSelection.collapsed(offset: value.length);
-  }
-
-  void listenerController() {
-    context.watch<SearchPlaceController>().textSearch;
-  }
-
-  @override
-  void initState() {
-    widget._searchController.addListener(listenerController);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    widget._searchController.removeListener(listenerController);
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      controller: widget._searchController,
-      autofocus: true,
-      textInputAction: TextInputAction.search,
-      onChanged: context.read<SearchPlaceController>().searchPlace,
-      onEditingComplete: () {
-        if (widget._searchController.text.isNotEmpty) {
-          context
-              .read<SearchPlaceController>()
-              .addElementOnHistory(widget._searchController.text);
-        }
-      },
-      decoration: Theme.of(context).decorationFilled.copyWith(
-            hintText: AppStrings.search,
-            suffixIcon: IconButton(
-              onPressed: () => Navigator.push<MaterialPageRoute>(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const FiltersScreen(),
-                ),
-              ),
-              icon: SvgPicture.asset(
-                AppAssets.filter,
-                color: Theme.of(context).colorScheme.green,
-              ),
-            ),
-            prefixIcon: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: SvgPicture.asset(
-                AppAssets.search,
-                color: Theme.of(context).colorScheme.secondary2Opacity,
-              ),
-            ),
-          ),
-    );
-  }
-}
-*/
