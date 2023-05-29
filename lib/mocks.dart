@@ -1,3 +1,6 @@
+import 'package:places/assets/res.dart';
+import 'package:places/assets/strings.dart';
+import 'package:places/domain/category.dart';
 import 'package:places/domain/sight.dart';
 
 final List<Sight> mocks = [
@@ -71,4 +74,38 @@ final List<Sight> mocks = [
     details: 'Лучший отель',
     type: 'Отель',
   ),
+];
+
+final List<Category> mocksCategory = [
+  Category(
+    title: AppStrings.hotel,
+    iconPath: AppAssets.categoryHotel,
+  ),
+  Category(
+    title: AppStrings.restourant,
+    iconPath: AppAssets.categoryRestourant,
+  ),
+  Category(
+    title: AppStrings.particularPlace,
+    iconPath: AppAssets.categoryParticular,
+  ),
+  Category(
+    title: AppStrings.park,
+    iconPath: AppAssets.categoryPark,
+  ),
+  Category(
+    title: AppStrings.museum,
+    iconPath: AppAssets.categoryMuseum,
+  ),
+  Category(
+    title: AppStrings.cafe,
+    iconPath: AppAssets.categoryCafe,
+  ),
+];
+final List<String> mocksHistory = [
+  'Кофейня у Рустама',
+  'Рускеала',
+  'Музей истории Российской Федерации',
+  'Большой',
+  'Эльбрус',
 ];

@@ -5,6 +5,7 @@ class CenterAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget bottomWidget;
   final double bottomWidgetHeigth;
   final Widget actionWidget;
+  final Widget? leadingWidget;
 
   const CenterAppBar({
     super.key,
@@ -12,12 +13,15 @@ class CenterAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.bottomWidget = const SizedBox.shrink(),
     this.bottomWidgetHeigth = 0.0,
     this.actionWidget = const SizedBox.shrink(),
+    this.leadingWidget,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       title: Text(title),
+      leading: leadingWidget,
+      leadingWidth: leadingWidget != null ? 100 : kToolbarHeight,
       actions: [actionWidget],
       bottom: PreferredSize(
         preferredSize: Size.fromHeight(bottomWidgetHeigth),

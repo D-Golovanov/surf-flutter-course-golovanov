@@ -5,7 +5,6 @@ import 'package:places/assets/res.dart';
 import 'package:places/assets/strings.dart';
 import 'package:places/assets/themes.dart';
 import 'package:places/domain/sight.dart';
-import 'package:places/ui/widgets/bottom_bar.dart';
 
 class SightDetailsScreen extends StatelessWidget {
   final Sight sight;

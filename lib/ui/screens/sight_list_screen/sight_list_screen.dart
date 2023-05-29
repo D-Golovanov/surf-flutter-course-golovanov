@@ -14,9 +14,13 @@ class _SightListScreenState extends State<SightListScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: const BigAppBar(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: const NewPlaceButtonWidget(),
       body: Column(
         children: const [
+          SizedBox(height: 14.0),
           SearchWidget(),
+          SizedBox(height: 14.0),
           ListBodyWidget(),
         ],
       ),

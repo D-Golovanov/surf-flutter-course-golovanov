@@ -6,7 +6,6 @@ class AppTheme {
   static final ligthThemeData = ThemeData(
     brightness: Brightness.light,
     primaryColor: AppColors.ligthMain,
-    // canvasColor: Colors.red,
     colorScheme: const ColorScheme.light(
       secondary: AppColors.secondary,
       error: AppColors.ligthRed,
@@ -55,7 +54,7 @@ class AppTheme {
       style: TextButton.styleFrom(
         backgroundColor: AppColors.white,
         foregroundColor: AppColors.secondary,
-        maximumSize: const Size(double.infinity, 40.0),
+        // maximumSize: const Size(double.infinity, 40.0),
         elevation: 0.0,
         textStyle: AppTypography.small14Regular,
       ),
@@ -71,28 +70,51 @@ class AppTheme {
       ),
       overlayColor: AppColors.ligthGreen.withOpacity(0.12),
     ),
-    /*
-        textTheme: TextTheme(
-          //Large Title - заголовок интересных мест
-          headlineLarge: AppTypography.largeTitle32Bold,
-          //Title - туториал, экран детали заголовки, время пути, заголовок на достижении
-          headlineSmall: AppTypography.title24Bold,
-          //Subtitle - аппбар, заголовок избранного (пустых страниц) / поиска / ошибок
-          titleLarge: AppTypography.subtitle18Medium,
-          //Text - экшены в аппбар, карточка название, "Поделиться" экран достижеия, название в карточке поиска (выделенный текст), экран нового места "Указать на карте"
-          titleMedium:
-              AppTypography.text16Medium.copyWith(color: AppColors.secondary),
-          //Small bold - таббар, категории карточка / детали экран, запланированная дата экран детали, "Пешеходный маршрут" и время
-          titleSmall: AppTypography.small14Bold,
-          //Small - поиск карточка категория, текст экранов, кнопки "Запланировать"/"В Избранное"/"Поделиться", доп текст карточки
-          bodyMedium:
-              AppTypography.small14Regular.copyWith(color: AppColors.secondary),
-          //Super small - Экран фильтры лейбл к иконке
-          bodySmall: AppTypography.superSmall14Regular,
-          //Button - кнопки
-          labelSmall: AppTypography.button14Bold,
+    inputDecorationTheme: InputDecorationTheme(
+      hintStyle: AppTypography.text16Regular
+          .copyWith(color: AppColors.secondary2Opacity),
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: 16.0,
+        vertical: 10.0,
+      ),
+      errorStyle: const TextStyle(height: 0.0),
+      enabledBorder: OutlineInputBorder(
+        borderSide: const BorderSide(color: AppColors.secondary2Opacity),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: AppColors.ligthRed.withOpacity(0.4),
         ),
-        */
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: AppColors.ligthGreen.withOpacity(0.4),
+          width: 2.0,
+        ),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: AppColors.ligthRed.withOpacity(0.4),
+        ),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+    ),
+    dividerTheme: const DividerThemeData(
+      color: AppColors.secondary2Opacity,
+      thickness: 0.8,
+    ),
+    textSelectionTheme: const TextSelectionThemeData(
+      selectionColor: AppColors.secondary2Opacity,
+      cursorColor: AppColors.ligthMain,
+      selectionHandleColor: AppColors.ligthGreen,
+    ),
+    progressIndicatorTheme: const ProgressIndicatorThemeData(
+      color: AppColors.secondary2Opacity,
+      circularTrackColor: AppColors.ligthBackgroung,
+    ),
   );
 
   static final darkThemeData = ThemeData(
@@ -144,7 +166,7 @@ class AppTheme {
       style: TextButton.styleFrom(
         backgroundColor: AppColors.darkMain,
         foregroundColor: AppColors.white,
-        maximumSize: const Size(double.infinity, 40.0),
+        // maximumSize: const Size(double.infinity, 40.0),
         elevation: 0.0,
         textStyle: AppTypography.small14Regular,
       ),
@@ -159,6 +181,51 @@ class AppTheme {
         pressedElevation: 4.0,
       ),
       overlayColor: AppColors.darkGreen.withOpacity(0.12),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      hintStyle: AppTypography.text16Regular
+          .copyWith(color: AppColors.secondary2Opacity),
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: 16.0,
+        vertical: 10.0,
+      ),
+      errorStyle: const TextStyle(height: 0.0),
+      enabledBorder: OutlineInputBorder(
+        borderSide: const BorderSide(color: AppColors.secondary2Opacity),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: AppColors.darkRed.withOpacity(0.4),
+        ),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: AppColors.darkGreen.withOpacity(0.4),
+          width: 2.0,
+        ),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: AppColors.darkRed.withOpacity(0.4),
+        ),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+    ),
+    dividerTheme: const DividerThemeData(
+      color: AppColors.secondary2Opacity,
+      thickness: 0.8,
+    ),
+    textSelectionTheme: const TextSelectionThemeData(
+      selectionColor: AppColors.secondary2Opacity,
+      cursorColor: AppColors.white,
+      selectionHandleColor: AppColors.darkGreen,
+    ),
+    progressIndicatorTheme: const ProgressIndicatorThemeData(
+      color: AppColors.secondary2Opacity,
+      circularTrackColor: AppColors.darkBlack,
     ),
   );
 }
@@ -198,7 +265,7 @@ extension CustomTextTheme on TextTheme {
   TextStyle get button14Bold => AppTypography.button14Bold;
 }
 
-extension ActionTextButtonAppBar on ThemeData {
+extension TextButtonAppBar on ThemeData {
   ButtonStyle get greenTextButtonTheme => brightness == Brightness.light
       ? TextButton.styleFrom(
           backgroundColor: AppColors.white,
@@ -211,5 +278,120 @@ extension ActionTextButtonAppBar on ThemeData {
           foregroundColor: AppColors.darkGreen,
           elevation: 0.0,
           textStyle: AppTypography.text16Medium,
+        );
+
+  ButtonStyle get greyTextButtonTheme => brightness == Brightness.light
+      ? TextButton.styleFrom(
+          backgroundColor: AppColors.white,
+          foregroundColor: AppColors.secondary2,
+          elevation: 0.0,
+          textStyle: AppTypography.text16Medium,
+        )
+      : TextButton.styleFrom(
+          backgroundColor: AppColors.darkMain,
+          foregroundColor: AppColors.secondary2,
+          elevation: 0.0,
+          textStyle: AppTypography.text16Medium,
+        );
+}
+
+extension TextFieldDropDown on ThemeData {
+  InputDecoration get decoration => brightness == Brightness.light
+      ? InputDecoration(
+          contentPadding: const EdgeInsets.symmetric(vertical: 14.0),
+          enabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: AppColors.secondary2Opacity),
+          ),
+          errorBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: AppColors.ligthRed.withOpacity(0.4)),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: AppColors.ligthGreen.withOpacity(0.4),
+              width: 2.0,
+            ),
+          ),
+          focusedErrorBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: AppColors.ligthRed.withOpacity(0.4)),
+          ),
+        )
+      : InputDecoration(
+          hintStyle: AppTypography.text16Regular
+              .copyWith(color: AppColors.secondary2Opacity),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16.0,
+            vertical: 10.0,
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: AppColors.secondary2Opacity),
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: AppColors.ligthRed.withOpacity(0.4),
+            ),
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: AppColors.ligthGreen.withOpacity(0.4),
+              width: 2.0,
+            ),
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          focusedErrorBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: AppColors.darkRed.withOpacity(0.4)),
+          ),
+        );
+
+  InputDecoration get decorationFilled => brightness == Brightness.light
+      ? InputDecoration(
+          filled: true,
+          fillColor: AppColors.ligthBackgroung,
+          hintStyle: AppTypography.text16Regular
+              .copyWith(color: AppColors.secondary2Opacity),
+          contentPadding: const EdgeInsets.symmetric(vertical: 14.0),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+        )
+      : InputDecoration(
+          filled: true,
+          fillColor: AppColors.darkBlack,
+          hintStyle: AppTypography.text16Regular
+              .copyWith(color: AppColors.secondary2Opacity),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16.0,
+            vertical: 10.0,
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(12.0),
+          ),
         );
 }
